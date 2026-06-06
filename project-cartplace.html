@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейс: КартПлейс - Кристина Мазур</title>
+    <meta name="description" content="Разработка витрины продукта для маркетплейса услуг КартПлейс. HTML, Tailwind CSS, Alpine.js.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'dark': '#1e1e1e', 'light': '#ffffff', 'muted': '#6c6c6c', 'accent-cyan': '#00f0ff', 'accent-coral': '#ff6b6b' }, fontFamily: { 'heading': ['Tenor Sans', 'sans-serif'], 'body': ['Manrope', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-dark text-light font-body flex flex-col min-h-screen">
+    <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-heading text-accent-cyan">КМ</a>
+            <a href="portfolio.html" class="text-light hover:text-accent-cyan transition-colors"><i class="fas fa-th-large mr-2"></i>Все работы</a>
+        </nav>
+    </header>
+
+    <main class="flex-grow pt-24">
+        <section class="px-6 py-12">
+            <div class="container mx-auto max-w-5xl text-center fade-in">
+                <span class="text-accent-cyan font-semibold tracking-wider uppercase text-sm">E-commerce / Digital</span>
+                <h1 class="text-4xl md:text-6xl font-heading mt-4 mb-8">Маркетплейс КартПлейс</h1>
+                <a href="https://tinkriskiss.github.io/cartplace/" target="_blank" class="btn-primary inline-flex items-center bg-accent-cyan text-dark px-8 py-3 rounded-full font-semibold hover:bg-accent-coral hover:text-white transition-colors">
+                    <i class="fas fa-external-link-alt mr-2"></i>Открыть живой сайт
+                </a>
+            </div>
+        </section>
+
+        <section class="px-6 pb-12">
+            <div class="container mx-auto max-w-5xl fade-in">
+                <img src="images/cartplace-hero.jpg" alt="Мокап сайта КартПлейс" class="w-full rounded-lg border border-muted/20 shadow-2xl" loading="lazy">
+            </div>
+        </section>
+
+        <section class="px-6 py-12 bg-dark border-y border-muted/10">
+            <div class="container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+                <div>
+                    <h3 class="text-muted text-sm uppercase tracking-wider mb-2">Задача</h3>
+                    <p class="text-light">Создать удобную витрину для цифровых услуг с понятным каталогом, детальными карточками продуктов и интуитивной навигацией.</p>
+                </div>
+                <div>
+                    <h3 class="text-muted text-sm uppercase tracking-wider mb-2">Стек технологий</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full">HTML5</span>
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full">E-commerce UI</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-muted text-sm uppercase tracking-wider mb-2">Сроки</h3>
+                    <p class="text-light">2 недели</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-16">
+            <div class="container mx-auto max-w-4xl space-y-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
+                    <div>
+                        <h2 class="text-3xl font-heading mb-4 text-accent-cyan">Структурированный каталог</h2>
+                        <p class="text-muted leading-relaxed mb-4"><strong class="text-light">Проблема:</strong> Большое количество разнородных услуг может запутать пользователя и снизить конверсию.</p>
+                        <p class="text-muted leading-relaxed"><strong class="text-light">Решение:</strong> Разработана чистая сетка карточек продуктов с hover-эффектами. Каждая карточка содержит ключевую информацию, что позволяет пользователю быстро сканировать предложения и переходить к деталям.</p>
+                    </div>
+                    <img src="images/cartplace-detail-1.jpg" alt="Деталь дизайна КартПлейс" class="rounded-lg border border-muted/20" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Дополнительные скриншоты (Галерея) -->
+        <section class="px-6 py-12 bg-dark">
+            <div class="container mx-auto max-w-5xl">
+                <h2 class="text-3xl font-heading text-center mb-8 fade-in">Детали интерфейса</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in">
+                    <!-- Скриншот 1 -->
+                    <div class="flex justify-center">
+                        <img src="images/cartplace-screen-1.jpg" alt="Экран 1" class="rounded-lg border border-muted/20 max-w-full h-auto" loading="lazy">
+                    </div>
+                    <!-- Скриншот 2 -->
+                    <div class="flex justify-center">
+                        <img src="images/cartplace-screen-2.jpg" alt="Экран 2" class="rounded-lg border border-muted/20 max-w-full h-auto" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="px-6 py-20 text-center">
+            <div class="container mx-auto max-w-3xl fade-in">
+                <h2 class="text-3xl md:text-4xl font-heading mb-6">Хотите такой же продуманный сайт?</h2>
+                <p class="text-muted text-lg mb-8">Давайте обсудим ваш проект. Я помогу выбрать лучшее решение под ваши задачи.</p>
+                <a href="index.html#contact" class="btn-primary inline-flex items-center bg-accent-cyan text-dark px-10 py-4 rounded-full font-semibold text-lg hover:bg-accent-coral hover:text-white transition-colors">
+                    <i class="fas fa-paper-plane mr-2"></i>Обсудить проект
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 px-6 border-t border-muted/20 bg-dark">
+        <div class="container mx-auto text-center text-muted"><p>&copy; 2026 Крис Мазур. Все права защищены.</p></div>
+    </footer>
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

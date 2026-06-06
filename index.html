@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Кристина Мазур - Веб-разработчик | Лендинги под ключ</title>
+    <meta name="description" content="Создаю быстрые, адаптивные лендинги под ключ на HTML, Tailwind CSS и Alpine.js. Чистый код, идеальный адаптив, фокус на результат.">
+    <meta name="keywords" content="веб-разработчик, лендинг под ключ, HTML, Tailwind CSS, Alpine.js, создание сайтов">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Кристина Мазур - Веб-разработчик">
+    <meta property="og:description" content="Создаю быстрые, адаптивные лендинги под ключ. Чистый код, идеальный адаптив.">
+    <meta property="og:image" content="images/og-preview.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    
+    <!-- Google Fonts: Tenor Sans (заголовки) + Manrope (текст) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Alpine.js для интерактивности -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Кастомная конфигурация Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark': '#1e1e1e',
+                        'light': '#ffffff',
+                        'muted': '#6c6c6c',
+                        'accent-cyan': '#00f0ff',
+                        'accent-coral': '#ff6b6b'
+                    },
+                    fontFamily: {
+                        'heading': ['Tenor Sans', 'sans-serif'],
+                        'body': ['Manrope', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Кастомные стили для анимаций -->
+    <style>
+        /* Плавная анимация появления при скролле */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Плавный скролл */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hover-эффект для карточек портфолио */
+        .portfolio-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.15);
+        }
+        
+        /* Анимация кнопок */
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #00f0ff;
+            color: #1e1e1e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 240, 255, 0.1);
+            border-color: #00f0ff;
+        }
+
+        /* Коралловая подсветка для цен */
+        .price-tag {
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .price-tag:hover {
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.6), 0 0 30px rgba(255, 107, 107, 0.4);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-light font-body">
+    
+    <!-- Header с навигацией -->
+    <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
+        <!-- Инициализируем состояние меню как закрытое (false) -->
+        <nav class="container mx-auto px-6 py-4" x-data="{ mobileMenuOpen: false }">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-heading text-accent-cyan">КМ</a>
+                
+                <!-- Десктопное меню -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-light hover:text-accent-cyan transition-colors">Обо мне</a>
+                    <a href="portfolio.html" class="text-light hover:text-accent-cyan transition-colors">Портфолио</a>
+                    <a href="#services" class="text-light hover:text-accent-cyan transition-colors">Услуги</a>
+                    <a href="#contact" class="text-light hover:text-accent-cyan transition-colors">Контакты</a>
+                    <a href="https://t.me/mazurtin" target="_blank" class="btn-primary bg-accent-cyan text-dark px-6 py-2 rounded-full font-semibold">
+                        <i class="fab fa-telegram mr-2"></i>Telegram
+                    </a>
+                </div>
+                
+                <!-- Кнопка мобильного меню (Гамбургер) -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-light text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Мобильное меню (скрыто по умолчанию, с плавной анимацией) -->
+            <div x-show="mobileMenuOpen" 
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 -translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-2"
+                class="md:hidden mt-4 pb-4 border-t border-muted/20 pt-4">
+                <a href="#about" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Обо мне</a>
+                <a href="portfolio.html" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Портфолио</a>
+                <a href="#services" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Услуги</a>
+                <a href="#contact" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Контакты</a>
+                <a href="https://t.me/mazurtin" target="_blank" class="block mt-4 text-center btn-primary bg-accent-cyan text-dark px-6 py-3 rounded-full font-semibold">
+                    <i class="fab fa-telegram mr-2"></i>Написать в Telegram
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero-секция с адаптивным выравниванием -->
+    <section class="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden">
+        <!-- Фоновое изображение -->
+        <div class="absolute inset-0 z-0">
+            <picture>
+                <!-- МОБИЛЬНАЯ ВЕРСИЯ -->
+                <source media="(max-width: 767px)" srcset="images/hero-mobile.jpg">
+                <!-- ДЕСКТОПНАЯ ВЕРСИЯ -->
+                <img 
+                    src="images/hero-desktop.jpg" 
+                    alt="Фоновое изображение" 
+                    class="w-full h-full object-cover"
+                    loading="eager"
+                >
+            </picture>
+        </div>
+        
+        <!-- Контент Hero -->
+        <!-- pt-24 на мобильном дает отступ от фиксированного хедера, md:pt-0 возвращает идеальное центрирование на десктопе -->
+        <div class="container mx-auto text-center max-w-4xl px-6 pt-24 md:pt-0 relative z-10">
+            
+            <!-- mb-4 на мобильном делает заголовок компактнее -->
+            <h1 class="text-3xl md:text-7xl font-heading mb-4 md:mb-6 fade-in text-light drop-shadow-lg leading-tight">
+                Ваш идеальный сайт <span class="text-accent-cyan">начинается здесь</span>
+            </h1>
+            
+            <!-- mb-12 на мобильном создает большой воздушный отступ, визуально опуская кнопки ниже -->
+            <p class="text-base md:text-2xl text-light/90 mb-96 md:mb-10 fade-in drop-shadow-md leading-relaxed">
+                Привет! Я Кристина, веб-разработчик. Превращаю ваши идеи в работающие лендинги: от структуры до запуска. Быстро, прозрачно и с фокусом на ваших клиентах.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <a href="portfolio.html" class="btn-primary bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg">
+                    <i class="fas fa-eye mr-2"></i>Посмотреть портфолио
+                </a>
+                <a href="#contact" class="btn-secondary border-2 border-accent-cyan text-accent-cyan px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm bg-dark/30">
+                    <i class="fas fa-envelope mr-2"></i>Связаться со мной
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Секция "Обо мне" -->
+    <section id="about" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-center mb-16 fade-in">
+                Обо <span class="text-accent-cyan">мне</span>
+            </h2>
+            
+            <!-- Сетка из 3 карточек (1 на мобильном, 3 на десктопе) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Карточка 1: Подход -->
+                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
+                    <i class="fas fa-gem text-4xl text-accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-heading mb-4 text-light">Эстетика и функциональность</h3>
+                    <p class="text-muted leading-relaxed flex-grow">
+                        Я специализируюсь на создании быстрых, адаптивных и визуально чистых лендингов. Мой подход — это поиск идеального баланса между красотой дизайна и пользой для бизнеса.
+                    </p>
+                </div>
+                
+                <!-- Карточка 2: Технологии -->
+                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
+                    <i class="fas fa-code text-4xl text-accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-heading mb-4 text-light">Современный стек</h3>
+                    <p class="text-muted leading-relaxed mb-6 flex-grow">
+                        Каждый проект — это чистый, семантический код без лишних зависимостей и тяжелых конструкторов. Такой сайт легко поддерживать и масштабировать в будущем.
+                    </p>
+                    <!-- Теги навыков -->
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full border border-accent-cyan/20">HTML5</span>
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full border border-accent-cyan/20">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full border border-accent-cyan/20">Alpine.js</span>
+                    </div>
+                </div>
+                
+                <!-- Карточка 3: Результат -->
+                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
+                    <i class="fas fa-chart-line text-4xl text-accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-heading mb-4 text-light">Фокус на результат</h3>
+                    <p class="text-muted leading-relaxed flex-grow">
+                        Моя главная цель — не просто «сделать сайт», а решить задачу вашего бизнеса. Я фокусируюсь на высокой конверсии, молниеносной скорости загрузки (90+ PageSpeed) и удобстве пользователей.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- Секция "Портфолио" (Избранное на главной) -->
+    <section id="portfolio" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-center mb-16 fade-in">
+                Избранные <span class="text-accent-cyan">работы</span>
+            </h2>
+            
+            <!-- Сетка из 2 проектов -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                
+                <!-- Проект 1: ВДОХ -->
+                <div class="portfolio-card bg-dark border border-muted/20 rounded-lg overflow-hidden fade-in">
+                    <img src="images/vdokh-preview.jpg" alt="Бьюти-салон ВДОХ" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading mb-2">Бьюти-салон ВДОХ</h3>
+                        <p class="text-muted mb-4">Многостраничный лендинг с AI-генерацией изображений и лайтбокс-галереей.</p>
+                        <a href="project-vdokh.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral transition-colors font-semibold">
+                            Смотреть кейс <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Проект 2: Зерно -->
+                <div class="portfolio-card bg-dark border border-muted/20 rounded-lg overflow-hidden fade-in">
+                    <img src="images/zerno-preview.jpg" alt="Витрина продукта Зерно" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading mb-2">Витрина продукта Зерно</h3>
+                        <p class="text-muted mb-4">Продуктовая витрина для локального бренда с акцентом на визуальной подаче.</p>
+                        <a href="project-zerno.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral transition-colors font-semibold">
+                            Смотреть кейс <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Кнопка "Смотреть все" -->
+            <div class="text-center fade-in">
+                <a href="portfolio.html" class="btn-primary inline-flex items-center bg-accent-cyan text-dark px-10 py-4 rounded-full font-semibold text-lg">
+                    <i class="fas fa-th-large mr-2"></i>Смотреть все работы
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Секция "Услуги" -->
+    <section id="services" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-center mb-16 fade-in">
+                Мои <span class="text-accent-cyan">услуги</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Услуга 1: Лендинг под ключ -->
+                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-rocket text-5xl text-accent-cyan"></i>
+                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 5000₽</span>
+                    </div>
+                    <h3 class="text-2xl font-heading mb-3">Лендинг под ключ</h3>
+                    <p class="text-muted">Полный цикл: от структуры и дизайна до верстки и запуска</p>
+                </div>
+                
+                <!-- Услуга 2: Многостраничный сайт -->
+                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-layer-group text-5xl text-accent-cyan"></i>
+                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 9000₽</span>
+                    </div>
+                    <h3 class="text-2xl font-heading mb-3">Многостраничный сайт</h3>
+                    <p class="text-muted">Несколько страниц с единым стилем, навигацией и адаптивом</p>
+                </div>
+                
+                <!-- Услуга 3: Консультация -->
+                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-comments text-5xl text-accent-cyan"></i>
+                        <span class="price-tag text-2xl font-bold text-accent-cyan">Бесплатно</span>
+                    </div>
+                    <h3 class="text-2xl font-heading mb-3">Консультация</h3>
+                    <p class="text-muted">Разбор вашего проекта, рекомендации по улучшению</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Секция "Контакты" -->
+    <section id="contact" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto max-w-2xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-center mb-6 fade-in">
+                Свяжитесь <span class="text-accent-cyan">со мной</span>
+            </h2>
+            <p class="text-center text-muted text-lg mb-12 fade-in">
+                Расскажите о вашем проекте, и я предложу лучшее решение
+            </p>
+            
+            <!-- Форма обратной связи с Alpine.js AJAX -->
+            <div class="fade-in" x-data="contactForm()">
+                
+                <!-- Сообщение об успехе -->
+                <div x-show="submitted" x-transition class="p-6 bg-accent-cyan/10 border border-accent-cyan rounded-lg mb-4">
+                    <p class="text-accent-cyan font-semibold">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        Спасибо! Ваше сообщение отправлено. Я свяжусь с вами в ближайшее время.
+                    </p>
+                </div>
+                
+                <!-- Сообщение об ошибке -->
+                <div x-show="error" x-transition class="p-6 bg-accent-coral/10 border border-accent-coral rounded-lg mb-4">
+                    <p class="text-accent-coral font-semibold">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        Произошла ошибка. Пожалуйста, напишите мне напрямую в Telegram.
+                    </p>
+                </div>
+                
+                <!-- Форма -->
+                <form 
+                    x-show="!submitted"
+                    @submit.prevent="submitForm"
+                    class="space-y-4"
+                >
+                    <div>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            placeholder="Ваше имя" 
+                            x-model="formData.name"
+                            required 
+                            class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"
+                        >
+                    </div>
+                    
+                    <div>
+                        <input 
+                            type="text" 
+                            name="telegram" 
+                            placeholder="Ваш Telegram (@username)" 
+                            x-model="formData.telegram"
+                            pattern="@?[a-zA-Z0-9_]{5,32}" 
+                            title="Введите корректный username (5-32 символа, буквы, цифры, подчёркивание)"
+                            required 
+                            class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"
+                        >
+                    </div>
+                    
+                    <div>
+                        <textarea 
+                            name="message" 
+                            placeholder="Расскажите о вашем проекте" 
+                            x-model="formData.message"
+                            rows="5" 
+                            required 
+                            class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"
+                        ></textarea>
+                    </div>
+                    
+                    <button 
+                        type="submit" 
+                        :disabled="loading"
+                        class="btn-primary w-full bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        <template x-if="loading">
+                            <span><i class="fas fa-spinner fa-spin mr-2"></i>Отправка...</span>
+                        </template>
+                        <template x-if="!loading">
+                            <span><i class="fas fa-paper-plane mr-2"></i>Отправить сообщение</span>
+                        </template>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-muted/20">
+        <div class="container mx-auto text-center text-muted">
+            <p>&copy; 2026 Крис Мазур. Все права защищены.</p>
+        </div>
+    </footer>
+    
+    <!-- Скрипт для анимаций при скролле -->
+    <script>
+        // Intersection Observer для плавного появления элементов
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Наблюдаем за всеми элементами с классом fade-in
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Инициализация Alpine.js для мобильного меню
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('mobileMenu', () => ({
+                mobileMenuOpen: false
+            }));
+        });
+    </script>
+
+    <script>
+        // Alpine.js компонент для формы обратной связи
+        function contactForm() {
+            return {
+                formData: {
+                    name: '',
+                    telegram: '',
+                    message: ''
+                },
+                loading: false,
+                submitted: false,
+                error: false,
+                
+                async submitForm() {
+                    this.loading = true;
+                    this.error = false;
+                    
+                    try {
+                        const formData = new FormData();
+                        formData.append('name', this.formData.name);
+                        formData.append('telegram', this.formData.telegram);
+                        formData.append('message', this.formData.message);
+                        
+                        const response = await fetch('https://formspree.io/f/mnjyjydj', {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            this.submitted = true;
+                            this.formData = { name: '', telegram: '', message: '' };
+                        } else {
+                            this.error = true;
+                        }
+                    } catch (err) {
+                        this.error = true;
+                        console.error('Form submission error:', err);
+                    } finally {
+                        this.loading = false;
+                    }
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

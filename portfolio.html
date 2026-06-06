@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Кристина Мазур | Веб-разработчик</title>
+    <meta name="description" content="Портфолио веб-разработчика Кристины Мазур. Лендинги, многостраничные сайты, витрины продуктов.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'dark': '#1e1e1e', 'light': '#ffffff', 'muted': '#6c6c6c', 'accent-cyan': '#00f0ff', 'accent-coral': '#ff6b6b' },
+                    fontFamily: { 'heading': ['Tenor Sans', 'sans-serif'], 'body': ['Manrope', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-dark text-light font-body flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-heading text-accent-cyan">КМ</a>
+            <a href="index.html" class="text-light hover:text-accent-cyan transition-colors"><i class="fas fa-arrow-left mr-2"></i>На главную</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-28 pb-20 px-6">
+        <div class="container mx-auto max-w-5xl">
+            <h1 class="text-4xl md:text-6xl font-heading text-center mb-4 fade-in">Все <span class="text-accent-cyan">проекты</span></h1>
+            <p class="text-center text-muted text-lg mb-16 fade-in">5 реализованных кейсов: от концепции до запуска</p>
+            
+            <div class="space-y-12">
+                
+                <!-- Проект 1: ВДОХ -->
+                <div class="flex flex-col md:flex-row gap-8 items-center bg-dark border border-muted/20 rounded-xl overflow-hidden fade-in hover:border-accent-cyan transition-colors p-4 md:p-6">
+                    <a href="project-vdokh.html" class="w-full md:w-1/2 block group">
+                        <img src="images/vdokh-preview.jpg" alt="Бьюти-салон ВДОХ" class="w-full aspect-video object-cover rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    </a>
+                    <div class="w-full md:w-1/2 flex flex-col justify-center px-2">
+                        <h3 class="text-2xl md:text-3xl font-heading mb-3">Бьюти-салон ВДОХ</h3>
+                        <p class="text-muted mb-6 leading-relaxed">Многостраничный лендинг для салона красоты. Реализована AI-генерация изображений, лайтбокс-галерея и удобная форма заявок.</p>
+                        <a href="project-vdokh.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral font-semibold transition-colors w-fit group">
+                            Смотреть кейс <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Проект 2: Зерно -->
+                <div class="flex flex-col md:flex-row gap-8 items-center bg-dark border border-muted/20 rounded-xl overflow-hidden fade-in hover:border-accent-cyan transition-colors p-4 md:p-6">
+                    <a href="project-zerno.html" class="w-full md:w-1/2 block group">
+                        <img src="images/zerno-preview.jpg" alt="Витрина продукта Зерно" class="w-full aspect-video object-cover rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    </a>
+                    <div class="w-full md:w-1/2 flex flex-col justify-center px-2">
+                        <h3 class="text-2xl md:text-3xl font-heading mb-3">Витрина продукта Зерно</h3>
+                        <p class="text-muted mb-6 leading-relaxed">Продуктовая витрина для локального бренда. Акцент на визуальной подаче, детальном описании состава и материалов.</p>
+                        <a href="project-zerno.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral font-semibold transition-colors w-fit group">
+                            Смотреть кейс <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Проект 3: Репетитор -->
+                <div class="flex flex-col md:flex-row gap-8 items-center bg-dark border border-muted/20 rounded-xl overflow-hidden fade-in hover:border-accent-cyan transition-colors p-4 md:p-6">
+                    <a href="project-lexi.html" class="w-full md:w-1/2 block group">
+                        <img src="images/english-lexi-preview.jpg" alt="Репетитор по английскому" class="w-full aspect-video object-cover rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    </a>
+                    <div class="w-full md:w-1/2 flex flex-col justify-center px-2">
+                        <h3 class="text-2xl md:text-3xl font-heading mb-3">Репетитор по английскому</h3>
+                        <p class="text-muted mb-6 leading-relaxed">Персональный сайт эксперта. Продуманный блок «Обо мне», понятные карточки услуг с ценами и блок доверия с отзывами.</p>
+                        <a href="project-lexi.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral font-semibold transition-colors w-fit group">
+                            Смотреть кейс <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Проект 4: Тату-мастер -->
+                <div class="flex flex-col md:flex-row gap-8 items-center bg-dark border border-muted/20 rounded-xl overflow-hidden fade-in hover:border-accent-cyan transition-colors p-4 md:p-6">
+                    <a href="project-tatu.html" class="w-full md:w-1/2 block group">
+                        <img src="images/tatu-preview.jpg" alt="Тату-мастер" class="w-full aspect-video object-cover rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    </a>
+                    <div class="w-full md:w-1/2 flex flex-col justify-center px-2">
+                        <h3 class="text-2xl md:text-3xl font-heading mb-3">Тату-мастер</h3>
+                        <p class="text-muted mb-6 leading-relaxed">Лендинг услуги в темной эстетике. Галерея работ с лайтбоксом, структурированный прайс-лист и форма быстрой записи.</p>
+                        <a href="project-tatu.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral font-semibold transition-colors w-fit group">
+                            Смотреть кейс <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Проект 5: КартПлейс -->
+                <div class="flex flex-col md:flex-row gap-8 items-center bg-dark border border-muted/20 rounded-xl overflow-hidden fade-in hover:border-accent-cyan transition-colors p-4 md:p-6">
+                    <a href="project-cartplace.html" class="w-full md:w-1/2 block group">
+                        <img src="images/cartplace-preview.jpg" alt="КартПлейс" class="w-full aspect-video object-cover rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    </a>
+                    <div class="w-full md:w-1/2 flex flex-col justify-center px-2">
+                        <h3 class="text-2xl md:text-3xl font-heading mb-3">Маркетплейс КартПлейс</h3>
+                        <p class="text-muted mb-6 leading-relaxed">Витрина продукта для digital-услуг. Каталог товаров, детальные карточки продуктов и интуитивная навигация.</p>
+                        <a href="project-cartplace.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral font-semibold transition-colors w-fit group">
+                            Смотреть кейс <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-muted/20 bg-dark">
+        <div class="container mx-auto text-center text-muted">
+            <p>&copy; 2026 Крис Мазур. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
