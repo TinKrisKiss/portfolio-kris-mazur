@@ -7,6 +7,9 @@
     <meta name="yandex-verification" content="3c88c1372d2e59b1" />
 
     <link rel="icon" type="image/png" href="favicon.webp">
+    <!-- Предзагрузка главного изображения для мобильных -->
+    <link rel="preload" as="image" href="images/hero-mobile.webp" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="images/hero-desktop.webp" media="(min-width: 768px)">
     
     <!-- SEO -->
     <title>Веб-разработчик | Создание лендингов под ключ</title>
@@ -180,7 +183,7 @@
         <div class="absolute inset-0 z-0">
             <picture>
                 <!-- МОБИЛЬНАЯ ВЕРСИЯ -->
-                <source media="(max-width: 767px)" srcset="images/hero-mobile.webp">
+                <source media="(max-width: 767px)" srcset="images/hero-mobile.webp" loading="eager" fetchpriority="high" width="1080" height="1920">
                 <!-- ДЕСКТОПНАЯ ВЕРСИЯ -->
                 <img 
                     src="images/hero-desktop.webp" 
