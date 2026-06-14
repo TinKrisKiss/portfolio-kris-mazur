@@ -30,7 +30,8 @@
     <meta name="twitter:image" content="https://tinkriskiss.github.io/portfolio-kris-mazur/images/og-preview.webp">
      
     <!-- Локальный Tailwind CSS -->
-    <link rel="stylesheet" href="dist/style.css">
+    <link rel="stylesheet" href="dist/style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="dist/style.css"></noscript>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -274,7 +275,7 @@
                 
                 <!-- Проект 1: ВДОХ -->
                 <div class="portfolio-card bg-dark border border-muted/20 rounded-lg overflow-hidden fade-in">
-                    <img src="images/vdokh-preview.webp" alt="Бьюти-салон ВДОХ" class="w-full h-64 object-cover" loading="lazy">
+                    <img src="images/vdokh-preview.webp" alt="Бьюти-салон ВДОХ" class="w-full h-64 object-cover" loading="lazy" decoding="async" width="800" height="500">
                     <div class="p-6">
                         <h3 class="text-2xl font-heading mb-2">Бьюти-салон ВДОХ</h3>
                         <p class="text-muted mb-4">Многостраничный лендинг с AI-генерацией изображений и лайтбокс-галереей.</p>
@@ -286,7 +287,7 @@
                 
                 <!-- Проект 2: Зерно -->
                 <div class="portfolio-card bg-dark border border-muted/20 rounded-lg overflow-hidden fade-in">
-                    <img src="images/zerno-preview.webp" alt="Витрина продукта Зерно" class="w-full h-64 object-cover" loading="lazy">
+                    <img src="images/zerno-preview.webp" alt="Витрина продукта Зерно" class="w-full h-64 object-cover" loading="lazy" decoding="async" width="800" height="500">
                     <div class="p-6">
                         <h3 class="text-2xl font-heading mb-2">Витрина продукта Зерно</h3>
                         <p class="text-muted mb-4">Продуктовая витрина для локального бренда с акцентом на визуальной подаче.</p>
