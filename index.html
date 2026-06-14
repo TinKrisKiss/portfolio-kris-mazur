@@ -29,11 +29,15 @@
     <meta name="twitter:description" content="Создаю быстрые, адаптивные лендинги под ключ на HTML, Tailwind CSS и Alpine.js.">
     <meta name="twitter:image" content="https://tinkriskiss.github.io/portfolio-kris-mazur/images/og-preview.jpg">
      
-    <!-- Подключение шрифтов и стилей (оставьте как было) -->
+    <!-- Локальный Tailwind CSS -->
+    <link rel="stylesheet" href="dist/style.css">
+
+    <!-- Google Fonts (пока оставляем для совместимости) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
@@ -121,7 +125,7 @@
     </style>
 </head>
 
-<body class="bg-dark text-light font-body">
+<body class="bg-dark text-light font-sans">
     
     <!-- Header с навигацией -->
     <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
