@@ -7,6 +7,10 @@
     <meta name="yandex-verification" content="3c88c1372d2e59b1" />
 
     <link rel="icon" type="image/png" href="favicon.webp">
+    <!-- Предзагрузка критических шрифтов -->
+    <link rel="preload" href="fonts/manrope-v15-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/manrope-v15-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/tenor-sans-v1-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Предзагрузка главного изображения для мобильных -->
     <link rel="preload" as="image" href="images/hero-mobile.webp" media="(max-width: 767px)">
     <link rel="preload" as="image" href="images/hero-desktop.webp" media="(min-width: 768px)">
@@ -190,6 +194,10 @@
                     alt="Фоновое изображение" 
                     class="w-full h-full object-cover"
                     loading="eager"
+                    fetchpriority="high"
+                    width="1920" 
+                    height="1080"
+                    decoding="async"
                 >
             </picture>
         </div>
