@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- SEO -->
+    <title>Кейс: Сайт для бьюти-салона ВДОХ | Веб-разработчик Кристина Мазур</title>
+    <meta name="description" content="Разработка многостраничного сайта-витрины для продукта. Внедрение AI-генерации изображений, адаптивная верстка на Tailwind CSS и оптимизация скорости.">
+    
+    <!-- Open Graph / Социальные сети -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tinkriskiss.github.io/portfolio-kris-mazur/">
+    <meta property="og:title" content="Кристина Мазур - Веб-разработчик | Лендинги под ключ">
+    <meta property="og:description" content="Создаю быстрые, адаптивные лендинги под ключ на HTML, Tailwind CSS и Alpine.js. Чистый код, идеальный адаптив, фокус на результат.">
+    <meta property="og:image" content="https://tinkriskiss.github.io/portfolio-kris-mazur/images/og-preview.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter Card (для Telegram, Discord, X) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Кристина Мазур - Веб-разработчик | Лендинги под ключ">
+    <meta name="twitter:description" content="Создаю быстрые, адаптивные лендинги под ключ на HTML, Tailwind CSS и Alpine.js.">
+    <meta name="twitter:image" content="https://tinkriskiss.github.io/portfolio-kris-mazur/images/og-preview.webp">
+    
+    <!-- Favicon (Встроенный SVG, не требует отдельных файлов) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e1e1e'/><text x='50' y='70' font-family='sans-serif' font-size='60' font-weight='bold' fill='%2300f0ff' text-anchor='middle'>КМ</text></svg>">
+    
+    <!-- Подключение шрифтов и стилей (оставьте как было) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'dark': '#1e1e1e', 'light': '#ffffff', 'muted': '#6c6c6c', 'accent-cyan': '#00f0ff', 'accent-coral': '#ff6b6b' }, fontFamily: { 'heading': ['Tenor Sans', 'sans-serif'], 'body': ['Manrope', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-dark text-light font-body flex flex-col min-h-screen">
+
+        <!-- Header -->
+        <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <!-- Логотип (СЛЕВА) -->
+            <a href="index.html" class="flex items-center">
+            <img 
+                src="images/logo.webp" 
+                alt="Логотип - Веб-разработчик" 
+                class="h-10 md:h-12 w-auto object-contain transition-opacity hover:opacity-80"
+                width="120"
+                height="48"
+            >
+            </a>
+
+            <!-- Ссылка "На главную" (СПРАВА) -->
+            <a href="index.html" class="text-light hover:text-accent-cyan transition-colors inline-flex items-center gap-2 font-medium">
+            <svg class="w-5 h-5 shrink-0" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+            На главную
+            </a>
+            
+        </nav>
+        </header>
+
+    <main class="flex-grow pt-24">
+        <section class="px-6 py-12">
+            <div class="container mx-auto max-w-5xl text-center fade-in">
+                <span class="text-accent-cyan font-semibold tracking-wider uppercase text-sm">E-commerce / Локальный бренд</span>
+                <h1 class="text-4xl md:text-6xl font-heading mt-4 mb-8">Витрина продукта Зерно</h1>
+                <a href="https://tinkriskiss.github.io/urbech-zerno/" target="_blank" class="btn-primary inline-flex items-center bg-accent-cyan text-dark px-8 py-3 rounded-full font-semibold hover:bg-accent-coral hover:text-white transition-colors">
+                    <i class="fas fa-external-link-alt mr-2"></i>Открыть живой сайт
+                </a>
+            </div>
+        </section>
+
+        <section class="px-6 pb-12">
+            <div class="container mx-auto max-w-5xl fade-in">
+                <img src="images/zerno-hero.webp" alt="Мокап сайта Зерно" class="w-full rounded-lg border border-muted/20 shadow-2xl" loading="lazy" decoding="async"  width="800" height="500">
+            </div>
+        </section>
+
+        <section class="px-6 py-12 bg-dark border-y border-muted/10">
+            <div class="container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+                <div>
+                    <h3 class="text-muted text-sm uppercase tracking-wider mb-2">Задача</h3>
+                    <p class="text-light">Передать натуральность и премиальность продукта через экран, сделав акцент на составе и качестве материалов.</p>
+                </div>
+                <div>
+                    <h3 class="text-muted text-sm uppercase tracking-wider mb-2">Стек технологий</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full">HTML5</span>
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full">Адаптив</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-muted text-sm uppercase tracking-wider mb-2">Сроки</h3>
+                    <p class="text-light">3 дня</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-16">
+            <div class="container mx-auto max-w-4xl space-y-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
+                    <div>
+                        <h2 class="text-3xl font-heading mb-4 text-accent-cyan">Визуальный акцент на продукте</h2>
+                        <p class="text-muted leading-relaxed mb-4"><strong class="text-light">Проблема:</strong> Стандартные шаблоны не позволяли передать уникальную текстуру и "душу" локального продукта.</p>
+                        <p class="text-muted leading-relaxed"><strong class="text-light">Решение:</strong> Использована крупная типографика и сетка с большим количеством "воздуха". Изображения продукта вынесены на первый план, а описание состава оформлено в виде чистых, легко читаемых блоков.</p>
+                    </div>
+                    <img src="images/zerno-detail-1.webp" alt="Деталь дизайна Зерно" class="rounded-lg border border-muted/20" loading="lazy" decoding="async"  width="800" height="500">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Дополнительные скриншоты (Галерея) -->
+        <section class="px-6 py-12 bg-dark">
+            <div class="container mx-auto max-w-5xl">
+                <h2 class="text-3xl font-heading text-center mb-8 fade-in">Детали интерфейса</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in">
+                    <!-- Скриншот 1 -->
+                    <div class="flex justify-center">
+                        <img src="images/zerno-screen-1.webp" alt="Экран 1" class="rounded-lg border border-muted/20 max-w-full h-auto" loading="lazy" decoding="async"  width="800" height="500">
+                    </div>
+                    <!-- Скриншот 2 -->
+                    <div class="flex justify-center">
+                        <img src="images/zerno-screen-2.webp" alt="Экран 2" class="rounded-lg border border-muted/20 max-w-full h-auto" loading="lazy" decoding="async"  width="800" height="500">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-20 text-center">
+            <div class="container mx-auto max-w-3xl fade-in">
+                <h2 class="text-3xl md:text-4xl font-heading mb-6">Хотите такой же продуманный сайт?</h2>
+                <p class="text-muted text-lg mb-8">Давайте обсудим ваш проект. Я помогу выбрать лучшее решение под ваши задачи.</p>
+                <a href="index.html#contact" class="btn-primary inline-flex items-center bg-accent-cyan text-dark px-10 py-4 rounded-full font-semibold text-lg hover:bg-accent-coral hover:text-white transition-colors">
+                    <i class="fas fa-paper-plane mr-2"></i>Обсудить проект
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 px-6 border-t border-muted/20 bg-dark">
+        <div class="container mx-auto text-center text-muted"><p>&copy; 2026 Крис Мазур. Все права защищены.</p></div>
+    </footer>
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
