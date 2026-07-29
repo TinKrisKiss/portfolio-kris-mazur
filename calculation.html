@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Примеры расчёта стоимости | Веб-разработчик</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="dist/style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="dist/style.css"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-dark text-light font-sans antialiased">
+
+    <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
+        <nav class="px-6 py-4" x-data="{ mobileMenuOpen: false }">
+            <div class="hidden md:flex items-center justify-between w-full max-w-7xl mx-auto">
+                <a href="index.html" class="flex items-center flex-shrink-0" style="margin-left: 200px;">
+                    <img src="images/logo.webp" alt="Логотип" class="h-10 md:h-12 w-auto object-contain transition-opacity hover:opacity-80" width="500" height="500">
+                </a>
+                <div style="position: absolute; left: calc(50% - 50px); transform: translateX(0); display: flex; align-items: center; gap: 63px;">
+                    <a href="portfolio.html" class="text-light hover:text-accent-cyan transition-colors">Работы</a>
+                    <a href="index.html#services" class="text-light hover:text-accent-cyan transition-colors">Услуги</a>
+                    <a href="index.html#contact" class="text-light hover:text-accent-cyan transition-colors">Контакты</a>
+                </div>
+                <a href="https://t.me/mazurtin" target="_blank" style="margin-right: 200px;" class="btn-primary bg-accent-cyan text-dark px-6 py-2 rounded-full font-semibold flex items-center gap-2 flex-shrink-0">
+                    <i class="fab fa-telegram"></i>Telegram
+                </a>
+            </div>
+            <div class="md:hidden flex items-center justify-between max-w-7xl mx-auto">
+                <a href="index.html" class="flex items-center">
+                    <img src="images/logo.webp" alt="Логотип" class="h-10 w-auto object-contain transition-opacity hover:opacity-80" width="500" height="500">
+                </a>
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-light focus:outline-none" aria-label="Открыть меню">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+            <div x-show="mobileMenuOpen" x-transition class="md:hidden mt-4 pb-4 border-t border-muted/20 pt-4 max-w-7xl mx-auto" @click.away="mobileMenuOpen = false">
+                <a href="portfolio.html" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Работы</a>
+                <a href="index.html#services" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Услуги</a>
+                <a href="index.html#contact" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Контакты</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pb-20 px-6" style="padding-top: 220px;">
+        <div class="container mx-auto max-w-6xl">
+            
+            <div class="text-center mb-16 fade-in">
+                <h1 class="text-4xl md:text-5xl font-heading mb-6">
+                    Примеры расчёта <span class="text-accent-cyan">стоимости проектов</span>
+                </h1>
+                <p class="text-muted text-lg max-w-3xl mx-auto leading-relaxed">
+                    Чтобы вы понимали, из чего складывается цена, я подготовила четыре примера. Это ориентировочные расчеты — ваш проект может стоить дешевле или дороже в зависимости от конкретных задач.
+                </p>
+            </div>
+
+            <!-- Примеры лендингов -->
+            <div class="mb-20">
+                <h2 class="text-3xl md:text-4xl font-heading mb-12 text-center fade-in">Примеры <span class="text-accent-cyan">лендингов</span></h2>
+                
+                <!-- Пример 1 -->
+                <div class="mb-8 fade-in">
+                    <div class="bg-dark border border-muted/20 rounded-lg overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/2 p-6">
+                            <div class="mb-4" style="aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden;">
+                                <div class="gallery-item cursor-pointer group relative w-full h-full" data-gallery="0" data-index="0">
+                                    <img src="images/calc-example1-hero.webp" alt="Hero" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;\'>Hero-секция</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                        <span class="text-light bg-black/50 px-3 py-1 rounded-full text-sm"><i class="fas fa-expand mr-2"></i>Увеличить</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; width: 100%;">
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="0" data-index="1" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example1-form.webp" alt="Форма" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Форма</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="0" data-index="2" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example1-block.webp" alt="Блок" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Блок</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="0" data-index="3" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example1-mobile.webp" alt="Mobile" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Mobile</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-1/2 p-6 md:p-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-heading text-light mb-1">Частный мастер</h3>
+                                    <p class="text-muted">Ремонт бытовой техники</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-accent-cyan">8 000 ₽</div>
+                                    <div class="text-sm text-muted">7 дней</div>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 mb-4">
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Структура и прототип</span> <span class="text-light">1 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Дизайн</span> <span class="text-light">2 500 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Верстка и адаптив</span> <span class="text-light">3 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Формы и интеграция</span> <span class="text-light">1 500 ₽</span></li>
+                            </ul>
+                            <div class="mb-4">
+                                <p class="text-muted mb-2"><strong class="text-light">Особенности:</strong></p>
+                                <ul class="list-disc pl-5 space-y-1 text-muted">
+                                    <li>Одностраничный сайт</li>
+                                    <li>6 блоков</li>
+                                    <li>Без сложной анимации</li>
+                                    <li>Используется готовая цветовая схема</li>
+                                </ul>
+                            </div>
+                            <p class="text-muted/60 text-xs italic">* Цена актуальна на Июль 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Пример 2 - ТЕКСТ СЛЕВА, ИЗОБРАЖЕНИЯ СПРАВА -->
+                <div class="mb-8 fade-in">
+                    <div class="bg-dark border border-muted/20 rounded-lg overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/2 p-6 md:p-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-heading text-light mb-1">Офлайн мероприятие</h3>
+                                    <p class="text-muted">Бизнес-завтрак для предпринимателей</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-accent-cyan">11 500 ₽</div>
+                                    <div class="text-sm text-muted">7 дней</div>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 mb-4">
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Структура и прототип</span> <span class="text-light">2 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Дизайн</span> <span class="text-light">3 500 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Верстка и адаптив</span> <span class="text-light">4 500 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Интерактив и формы</span> <span class="text-light">1 500 ₽</span></li>
+                            </ul>
+                            <div class="mb-4">
+                                <p class="text-muted mb-2"><strong class="text-light">Особенности:</strong></p>
+                                <ul class="list-disc pl-5 space-y-1 text-muted">
+                                    <li>Форма с выбором тарифа участия</li>
+                                    <li>Таймер обратного отсчёта</li>
+                                    <li>Блок с расписанием по часам</li>
+                                    <li>Интерактивная карта локации</li>
+                                </ul>
+                            </div>
+                            <p class="text-muted/60 text-xs italic">* Цена актуальна на Июль 2026</p>
+                        </div>
+                        
+                        <div class="md:w-1/2 p-6">
+                            <div class="mb-4" style="aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden;">
+                                <div class="gallery-item cursor-pointer group relative w-full h-full" data-gallery="1" data-index="0">
+                                    <img src="images/calc-example2-hero.webp" alt="Hero" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;\'>Hero-секция</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                        <span class="text-light bg-black/50 px-3 py-1 rounded-full text-sm"><i class="fas fa-expand mr-2"></i>Увеличить</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; width: 100%;">
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="1" data-index="1" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example2-timer.webp" alt="Таймер" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Таймер</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="1" data-index="2" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example2-schedule.webp" alt="Расписание" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Расписание</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="1" data-index="3" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example2-mobile.webp" alt="Mobile" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Mobile</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Примеры многостраничных сайтов -->
+            <div class="mb-20">
+                <h2 class="text-3xl md:text-4xl font-heading mb-12 text-center fade-in">Примеры <span class="text-accent-cyan">многостраничных сайтов</span></h2>
+                
+                <!-- Пример 3 -->
+                <div class="mb-8 fade-in">
+                    <div class="bg-dark border border-muted/20 rounded-lg overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/2 p-6">
+                            <div class="mb-4" style="aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden;">
+                                <div class="gallery-item cursor-pointer group relative w-full h-full" data-gallery="2" data-index="0">
+                                    <img src="images/calc-example3-hero.webp" alt="Hero" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;\'>Главная</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                        <span class="text-light bg-black/50 px-3 py-1 rounded-full text-sm"><i class="fas fa-expand mr-2"></i>Увеличить</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; width: 100%;">
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="2" data-index="1" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example3-services.webp" alt="Услуги" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Услуги</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="2" data-index="2" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example3-contacts.webp" alt="Контакты" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Контакты</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="2" data-index="3" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example3-mobile.webp" alt="Mobile" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Mobile</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-1/2 p-6 md:p-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-heading text-light mb-1">Сайт-визитка компании</h3>
+                                    <p class="text-muted">Бухгалтерские услуги для ИП</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-accent-cyan">13 000 ₽</div>
+                                    <div class="text-sm text-muted">10 дней</div>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 mb-4">
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Структура (3 страницы)</span> <span class="text-light">3 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Дизайн</span> <span class="text-light">4 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Верстка и адаптив</span> <span class="text-light">4 500 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Навигация и меню</span> <span class="text-light">1 500 ₽</span></li>
+                            </ul>
+                            <div class="mb-4">
+                                <p class="text-muted mb-2"><strong class="text-light">Особенности:</strong></p>
+                                <ul class="list-disc pl-5 space-y-1 text-muted">
+                                    <li>3 страницы</li>
+                                    <li>Простая навигация</li>
+                                    <li>Формы обратной связи на каждой странице</li>
+                                    <li>Без сложного функционала</li>
+                                </ul>
+                            </div>
+                            <p class="text-muted/60 text-xs italic">* Цена актуальна на Июль 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Пример 4 - ТЕКСТ СЛЕВА, ИЗОБРАЖЕНИЯ СПРАВА -->
+                <div class="mb-8 fade-in">
+                    <div class="bg-dark border border-muted/20 rounded-lg overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/2 p-6 md:p-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-heading text-light mb-1">Корпоративный сайт с каталогом</h3>
+                                    <p class="text-muted">Производитель мебели на заказ</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-accent-cyan">24 000 ₽</div>
+                                    <div class="text-sm text-muted">14 дней</div>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 mb-4">
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Структура (5-6 страниц)</span> <span class="text-light">4 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Дизайн</span> <span class="text-light">7 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Верстка и адаптив</span> <span class="text-light">8 000 ₽</span></li>
+                                <li class="flex justify-between border-l-2 border-accent-cyan pl-3"><span class="text-muted">Функционал</span> <span class="text-light">5 000 ₽</span></li>
+                            </ul>
+                            <div class="mb-4">
+                                <p class="text-muted mb-2"><strong class="text-light">Особенности:</strong></p>
+                                <ul class="list-disc pl-5 space-y-1 text-muted">
+                                    <li>Фильтрация работ по категориям</li>
+                                    <li>Сложный каталог</li>
+                                    <li>SEO-подготовка</li>
+                                    <li>Блог для статей</li>
+                                    <li>Анимации переходов между страницами</li>
+                                </ul>
+                            </div>
+                            <p class="text-muted/60 text-xs italic">* Цена актуальна на Июль 2026</p>
+                        </div>
+                        
+                        <div class="md:w-1/2 p-6">
+                            <div class="mb-4" style="aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden;">
+                                <div class="gallery-item cursor-pointer group relative w-full h-full" data-gallery="3" data-index="0">
+                                    <img src="images/calc-example4-hero.webp" alt="Hero" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;\'>Главная</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                        <span class="text-light bg-black/50 px-3 py-1 rounded-full text-sm"><i class="fas fa-expand mr-2"></i>Увеличить</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; width: 100%;">
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="3" data-index="1" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example4-catalog.webp" alt="Каталог" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Каталог</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="3" data-index="2" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example4-filter.webp" alt="Фильтр" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Фильтр</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                                <div class="gallery-item cursor-pointer group relative" data-gallery="3" data-index="3" style="flex: 1; aspect-ratio: 1/1; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;">
+                                    <img src="images/calc-example4-mobile.webp" alt="Mobile" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);\'><span style=\'color:#9CA3AF;font-size:12px;\'>Mobile</span></div>'">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none"><i class="fas fa-search-plus text-light text-xs"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Что влияет на стоимость -->
+            <div class="mb-20 fade-in" style="margin-top: 100px;">
+                <h2 class="text-3xl md:text-4xl font-heading mb-12 text-center">От чего зависит <span class="text-accent-cyan">итоговая цена?</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 border border-muted/20 rounded-lg hover:border-accent-cyan transition-colors">
+                        <i class="fas fa-layer-group text-3xl text-accent-cyan mb-4"></i>
+                        <h3 class="text-xl font-heading mb-2 text-light">Количество страниц и блоков</h3>
+                        <p class="text-muted">Чем больше контента, тем больше времени требуется на проработку структуры, дизайн и верстку.</p>
+                    </div>
+                    <div class="p-6 border border-muted/20 rounded-lg hover:border-accent-cyan transition-colors">
+                        <i class="fas fa-paint-brush text-3xl text-accent-cyan mb-4"></i>
+                        <h3 class="text-xl font-heading mb-2 text-light">Сложность дизайна</h3>
+                        <p class="text-muted">Генерация уникальных иконок, сложных фонов или реализация нестандартной анимации увеличивают стоимость.</p>
+                    </div>
+                    <div class="p-6 border border-muted/20 rounded-lg hover:border-accent-cyan transition-colors">
+                        <i class="fas fa-cogs text-3xl text-accent-cyan mb-4"></i>
+                        <h3 class="text-xl font-heading mb-2 text-light">Функционал</h3>
+                        <p class="text-muted">Калькуляторы, фильтры, слайдеры, интеграции с CRM или платежными системами требуют дополнительной разработки.</p>
+                    </div>
+                    <div class="p-6 border border-muted/20 rounded-lg hover:border-accent-cyan transition-colors md:col-span-2 lg:col-span-2">
+                        <i class="fas fa-file-alt text-3xl text-accent-cyan mb-4"></i>
+                        <h3 class="text-xl font-heading mb-2 text-light">Наличие контента</h3>
+                        <p class="text-muted">Если тексты и фото предоставляете вы, цена ниже. Если мне нужно писать, структурировать тексты или искать изображения — это отдельная работа, которая оценивается дополнительно.</p>
+                    </div>
+                    <div class="p-6 border border-muted/20 rounded-lg hover:border-accent-cyan transition-colors">
+                        <i class="fas fa-bolt text-3xl text-accent-cyan mb-4"></i>
+                        <h3 class="text-xl font-heading mb-2 text-light">Срочность</h3>
+                        <p class="text-muted">Если проект нужно сдать в приоритетном порядке (за 3-4 дня), цена может быть выше из-за перестройки графика.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA с формой -->
+            <div class="p-8 md:p-12 bg-muted/10 border border-muted/20 rounded-2xl fade-in" style="margin-top: 100px;">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-heading mb-4">Хотите получить <span class="text-accent-cyan">точный расчет</span> для вашего проекта?</h2>
+                    <p class="text-muted text-lg max-w-2xl mx-auto">
+                        Оставьте заявку, и я свяжусь с вами, чтобы обсудить детали и назвать фиксированную стоимость.
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <form x-data="{ submitted: false }" x-show="!submitted" @submit.prevent="submitted=true" class="space-y-4" style="width: 500px; max-width: 100%;">
+                        <div><input type="text" placeholder="Ваше имя" required class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"></div>
+                        <div><input type="text" placeholder="Ваш Telegram" required class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"></div>
+                        <button type="submit" class="btn-primary w-full bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg">Рассчитать проект</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-muted/20">
+        <div class="container mx-auto text-center text-muted">
+            <p class="mb-2">&copy; 2026 Крис Мазур. Все права защищены.</p>
+            <p class="text-sm">
+                <a href="privacy.html" class="hover:text-accent-cyan transition-colors underline">Политика обработки персональных данных</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ЛАЙТБОКС -->
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; background: rgba(0,0,0,0.95);">
+        <button id="lb-close" style="position: absolute; top: 20px; right: 20px; z-index: 10000; color: white; font-size: 32px; background: none; border: none; cursor: pointer; line-height: 1;">×</button>
+        
+        <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 40px 20px;">
+            <button id="lb-prev" style="color: white; font-size: 48px; background: none; border: none; cursor: pointer; padding: 0 20px; line-height: 1; flex-shrink: 0;">‹</button>
+            <div id="lb-image-wrapper" style="flex: 1; max-width: 900px; display: flex; align-items: center; justify-content: center;">
+                <img id="lb-img" src="" alt="" style="max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 8px;">
+            </div>
+            <button id="lb-next" style="color: white; font-size: 48px; background: none; border: none; cursor: pointer; padding: 0 20px; line-height: 1; flex-shrink: 0;">›</button>
+        </div>
+        
+        <div id="lb-counter" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10000; background: rgba(0,0,0,0.7); color: white; padding: 10px 20px; border-radius: 20px; font-size: 14px;">
+            <span id="lb-current">1</span> / <span id="lb-total">4</span>
+        </div>
+    </div>
+
+    <script>
+    const galleries = [
+        { images: ['images/calc-example1-hero.webp', 'images/calc-example1-form.webp', 'images/calc-example1-block.webp', 'images/calc-example1-mobile.webp'] },
+        { images: ['images/calc-example2-hero.webp', 'images/calc-example2-timer.webp', 'images/calc-example2-schedule.webp', 'images/calc-example2-mobile.webp'] },
+        { images: ['images/calc-example3-hero.webp', 'images/calc-example3-services.webp', 'images/calc-example3-contacts.webp', 'images/calc-example3-mobile.webp'] },
+        { images: ['images/calc-example4-hero.webp', 'images/calc-example4-catalog.webp', 'images/calc-example4-filter.webp', 'images/calc-example4-mobile.webp'] }
+    ];
+    
+    let currentGallery = 0;
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCurrent = document.getElementById('lb-current');
+    const lbTotal = document.getElementById('lb-total');
+    const lbImageWrapper = document.getElementById('lb-image-wrapper');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', function() {
+            currentGallery = parseInt(this.dataset.gallery);
+            currentIndex = parseInt(this.dataset.index);
+            showImage();
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function showImage() {
+        lbImg.src = galleries[currentGallery].images[currentIndex];
+        lbCurrent.textContent = currentIndex + 1;
+        lbTotal.textContent = galleries[currentGallery].images.length;
+    }
+
+    document.getElementById('lb-close').addEventListener('click', () => {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+    });
+
+    document.getElementById('lb-next').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % galleries[currentGallery].images.length;
+        showImage();
+    });
+
+    document.getElementById('lb-prev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + galleries[currentGallery].images.length) % galleries[currentGallery].images.length;
+        showImage();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        // Закрываем, если клик был не по изображению и не по кнопкам
+        if (e.target === lightbox || (e.target !== lbImg && !e.target.closest('button'))) {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+    </script>
+
+</body>
+</html>

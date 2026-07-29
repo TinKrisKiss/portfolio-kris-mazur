@@ -61,30 +61,7 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>    
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <!-- УДАЛЕНО: Кастомная конфигурация Tailwind (вызывала ошибку "tailwind is not defined") -->
-    <!-- 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'dark': '#1e1e1e',
-                        'light': '#ffffff',
-                        'muted': '#6c6c6c',
-                        'accent-cyan': '#00f0ff',
-                        'accent-coral': '#ff6b6b'
-                    },
-                    fontFamily: {
-                        'heading': ['Tenor Sans', 'sans-serif'],
-                        'body': ['Manrope', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    -->
-    
+      
     <!-- Кастомные стили для анимаций -->
     <style>
         /* Плавная анимация появления при скролле */
@@ -146,17 +123,57 @@
             transform: scale(1.05);
         }
     </style>
+
 </head>
 
 <body class="bg-dark text-light font-sans">
+
+    <!-- Прелоадер -->
+    <script>
+    (function() {
+        var preloader = document.getElementById('preloader');
+        
+        function hidePreloader() {
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 500);
+            }
+        }
+        
+        // Пробуем несколько способов
+        if (document.readyState === 'complete') {
+            setTimeout(hidePreloader, 500);
+        } else {
+            window.addEventListener('load', hidePreloader);
+            setTimeout(hidePreloader, 3000); // Фолбэк на 3 секунды
+        }
+    })();
+    </script>
+
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(function() {
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+                    document.body.classList.remove('preloader-active');
+                }, 300); // Небольшая задержка для плавности
+            }
+        });
+        document.body.classList.add('preloader-active');
+    </script>
     
     <!-- Header с навигацией -->
     <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
-        <!-- Инициализируем состояние меню как закрытое (false) -->
-        <nav class="container mx-auto px-6 py-4" x-data="{ mobileMenuOpen: false }">
-            <div class="flex items-center justify-between">
+        <nav class="px-6 py-4" x-data="{ mobileMenuOpen: false }">
+            <!-- Десктопная версия -->
+            <div class="hidden md:flex items-center justify-between w-full max-w-7xl mx-auto">
                 <!-- Логотип -->
-                <a href="index.html" class="flex items-center">
+                <a href="index.html" class="flex items-center flex-shrink-0" style="margin-left: 200px;">
                     <img 
                         src="images/logo.webp" 
                         alt="Логотип - Веб-разработчик" 
@@ -165,27 +182,41 @@
                         height="500"
                     >
                 </a>
-               
-                <!-- Десктопное меню -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-light hover:text-accent-cyan transition-colors">Обо мне</a>
-                    <a href="portfolio.html" class="text-light hover:text-accent-cyan transition-colors">Портфолио</a>
+            
+                <!-- Десктопное меню (сдвинуто на 77px влево от центра, спейсинг 63px) -->
+                <div style="position: absolute; left: calc(50% - 50px); transform: translateX(0); display: flex; align-items: center; gap: 63px;">
+                    <a href="portfolio.html" class="text-light hover:text-accent-cyan transition-colors">Работы</a>
                     <a href="#services" class="text-light hover:text-accent-cyan transition-colors">Услуги</a>
                     <a href="#contact" class="text-light hover:text-accent-cyan transition-colors">Контакты</a>
-                    <a href="https://t.me/mazurtin" target="_blank" class="btn-primary bg-accent-cyan text-dark px-6 py-2 rounded-full font-semibold">
-                        <i class="fab fa-telegram mr-2"></i>Telegram
-                    </a>
                 </div>
                 
-                <!-- Кнопка мобильного меню (Гамбургер) -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-light focus:outline-none">
-                    <svg class="w-6 h-6" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <!-- Кнопка Telegram -->
+                <a href="https://t.me/mazurtin" target="_blank" style="margin-right: 200px;" class="btn-primary bg-accent-cyan text-dark px-6 py-2 rounded-full font-semibold flex items-center gap-2 flex-shrink-0">
+                    <i class="fab fa-telegram"></i>Telegram
+                </a>
+            </div>
+            
+            <!-- Мобильная версия хэдера -->
+            <div class="md:hidden flex items-center justify-between max-w-7xl mx-auto">
+                <a href="index.html" class="flex items-center">
+                    <img 
+                        src="images/logo.webp" 
+                        alt="Логотип - Веб-разработчик" 
+                        class="h-10 w-auto object-contain transition-opacity hover:opacity-80"
+                        width="500"
+                        height="500"
+                    >
+                </a>
+                
+                <!-- Кнопка мобильного меню -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-light focus:outline-none" aria-label="Открыть меню">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>
             
-            <!-- Мобильное меню (скрыто по умолчанию, с плавной анимацией) -->
+            <!-- Мобильное меню -->
             <div x-show="mobileMenuOpen" 
                 x-transition:enter="transition ease-out duration-200"
                 x-transition:enter-start="opacity-0 -translate-y-2"
@@ -193,9 +224,9 @@
                 x-transition:leave="transition ease-in duration-150"
                 x-transition:leave-start="opacity-100 translate-y-0"
                 x-transition:leave-end="opacity-0 -translate-y-2"
-                class="md:hidden mt-4 pb-4 border-t border-muted/20 pt-4">
-                <a href="#about" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Обо мне</a>
-                <a href="portfolio.html" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Портфолио</a>
+                class="md:hidden mt-4 pb-4 border-t border-muted/20 pt-4 max-w-7xl mx-auto"
+                @click.away="mobileMenuOpen = false">
+                <a href="portfolio.html" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Работы</a>
                 <a href="#services" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Услуги</a>
                 <a href="#contact" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Контакты</a>
                 <a href="https://t.me/mazurtin" target="_blank" class="block mt-4 text-center btn-primary bg-accent-cyan text-dark px-6 py-3 rounded-full font-semibold">
@@ -204,148 +235,66 @@
             </div>
         </nav>
     </header>
-    
-    <!-- Hero-секция с адаптивным выравниванием -->
-    <section class="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden">
+
+    <!-- Hero-секция -->
+    <section class="relative min-h-screen flex items-center overflow-hidden bg-dark">
         <!-- Фоновое изображение -->
         <div class="absolute inset-0 z-0">
             <picture>
-                <!-- МОБИЛЬНАЯ ВЕРСИЯ -->
-                <source media="(max-width: 767px)" srcset="images/hero-mobile.webp" loading="eager" fetchpriority="high" width="1080" height="1920">
-                <!-- ДЕСКТОПНАЯ ВЕРСИЯ -->
+                <source media="(max-width: 767px)" srcset="images/hero-mobile.webp" loading="eager" fetchpriority="high">
                 <img 
                     src="images/hero-desktop.webp" 
                     alt="Фоновое изображение" 
                     class="w-full h-full object-cover"
                     loading="eager"
                     fetchpriority="high"
-                    width="1920" 
-                    height="1080"
                     decoding="async"
                 >
             </picture>
         </div>
         
-        <!-- Контент Hero -->
-        <!-- pt-24 на мобильном дает отступ от фиксированного хедера, md:pt-0 возвращает идеальное центрирование на десктопе -->
-        <div class="container mx-auto text-center max-w-4xl px-6 pt-24 md:pt-0 relative z-10">
-            
-            <!-- mb-4 на мобильном делает заголовок компактнее -->
-            <h1 class="text-3xl md:text-7xl font-heading mb-4 md:mb-6 fade-in text-light drop-shadow-lg leading-tight">
-                Ваш идеальный сайт <span class="text-accent-cyan">начинается здесь</span>
-            </h1>
-            
-            <!-- mb-12 на мобильном создает большой воздушный отступ, визуально опуская кнопки ниже -->
-            <p class="text-base md:text-2xl text-light/90 mb-96 md:mb-10 fade-in drop-shadow-md leading-relaxed">
-                Превращаю ваши идеи в работающие лендинги: от структуры до запуска. Быстро, прозрачно и с фокусом на ваших клиентах.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
-                <a href="portfolio.html" class="btn-primary bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg">
-                    <i class="fas fa-eye mr-2"></i>Посмотреть портфолио
-                </a>
-                <a href="#contact" class="btn-secondary inline-flex items-center justify-center gap-2 border-2 border-accent-cyan text-accent-cyan px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm bg-dark/30 transition-all hover:bg-accent-cyan/10">
-                    <svg class="w-5 h-5 shrink-0" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
-                    <span class="leading-tight">Связаться со мной</span>
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Секция "Обо мне" -->
-    <section id="about" class="py-20 px-6 bg-dark">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-heading text-center mb-16 fade-in">
-                Обо <span class="text-accent-cyan">мне</span>
-            </h2>
-            
-            <!-- Сетка из 3 карточек (1 на мобильном, 3 на десктопе) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Контент Hero (сдвинут на 77px влево от центра экрана) -->
+        <div style="position: absolute; left: calc(50% - 77px); top: 50%; transform: translateY(-50%);" class="z-10 px-6 md:px-12">
+            <div class="max-w-2xl text-left">
+                <h1 style="margin-top: 50px;" class="text-3xl md:text-5xl lg:text-6xl font-heading mb-6 fade-in text-light leading-tight">                    Упакую ваш бизнес<br>
+                    в продающий <span class="text-accent-cyan">лендинг</span><br>
+                    или многостраничный <span class="text-accent-cyan">сайт</span>
+                </h1>
                 
-                <!-- Карточка 1: Подход -->
-                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
-                    <i class="fas fa-gem text-4xl text-accent-cyan mb-6"></i>
-                    <h3 class="text-2xl font-heading mb-4 text-light">Эстетика и функциональность</h3>
-                    <p class="text-muted leading-relaxed flex-grow">
-                        Я специализируюсь на создании быстрых, адаптивных и визуально чистых лендингов. Мой подход — это поиск идеального баланса между красотой дизайна и пользой для бизнеса.
-                    </p>
-                </div>
-                
-                <!-- Карточка 2: Технологии -->
-                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
-                    <i class="fas fa-code text-4xl text-accent-cyan mb-6"></i>
-                    <h3 class="text-2xl font-heading mb-4 text-light">Современный стек</h3>
-                    <p class="text-muted leading-relaxed mb-6 flex-grow">
-                        Каждый проект — это чистый, семантический код без лишних зависимостей и тяжелых конструкторов. Такой сайт легко поддерживать и масштабировать в будущем.
-                    </p>
-                    <!-- Теги навыков -->
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full border border-accent-cyan/20">HTML5</span>
-                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full border border-accent-cyan/20">Tailwind CSS</span>
-                        <span class="px-3 py-1 bg-accent-cyan/10 text-accent-cyan text-sm rounded-full border border-accent-cyan/20">Alpine.js</span>
+                <p class="text-base md:text-xl text-light/80 mb-8 fade-in leading-relaxed">
+                    Разработаю структуру и дизайн, сверстаю сайт или лендинг<br class="hidden md:block">
+                    и запущу его онлайн.
+                </p>
+
+                <!-- Преимущества в плашках -->
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0;">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); padding: 10px 20px; border-radius: 50px; font-size: 14px; color: #22d3ee;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span style="font-weight: 600;">Срок от 7 до 14 дней</span>
+                    </div>
+                    
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); padding: 10px 20px; border-radius: 50px; font-size: 14px; color: #22d3ee;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        <span style="font-weight: 600;">Поддержка 2 недели</span>
+                    </div>
+                    
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); padding: 10px 20px; border-radius: 50px; font-size: 14px; color: #22d3ee;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                        <span style="font-weight: 600;">Генерация контента</span>
                     </div>
                 </div>
                 
-                <!-- Карточка 3: Результат -->
-                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
-                    <i class="fas fa-chart-line text-4xl text-accent-cyan mb-6"></i>
-                    <h3 class="text-2xl font-heading mb-4 text-light">Фокус на результат</h3>
-                    <p class="text-muted leading-relaxed flex-grow">
-                        Моя главная цель — не просто «сделать сайт», а решить задачу вашего бизнеса. Я фокусируюсь на высокой конверсии, молниеносной скорости загрузки (90+ PageSpeed) и удобстве пользователей.
-                    </p>
+                <div class="fade-in">
+                    <a href="portfolio.html" style="display: inline-block; margin-top: 40px;" class="btn-primary bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-accent-cyan/30 transition-all">
+                        Примеры работ
+                    </a>
                 </div>
-                
-            </div>
-        </div>
-    </section>
-    
-    <!-- Секция "Портфолио" (Избранное на главной) -->
-    <section id="portfolio" class="py-20 px-6 bg-dark">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-heading text-center mb-16 fade-in">
-                Избранные <span class="text-accent-cyan">работы</span>
-            </h2>
-            
-            <!-- Сетка из 2 проектов -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                
-                <!-- Проект 1: ВДОХ -->
-                <div class="portfolio-card bg-dark border border-muted/20 rounded-lg overflow-hidden fade-in">
-                    <img src="images/vdokh-preview.webp" alt="Бьюти-салон ВДОХ" class="w-full h-64 object-cover" loading="lazy" decoding="async" width="800" height="500">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading mb-2">Бьюти-салон ВДОХ</h3>
-                        <p class="text-muted mb-4">Многостраничный лендинг с AI-генерацией изображений и лайтбокс-галереей.</p>
-                        <a href="project-vdokh.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral transition-colors font-semibold">
-                            Смотреть кейс <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Проект 2: Зерно -->
-                <div class="portfolio-card bg-dark border border-muted/20 rounded-lg overflow-hidden fade-in">
-                    <img src="images/zerno-preview.webp" alt="Витрина продукта Зерно" class="w-full h-64 object-cover" loading="lazy" decoding="async" width="800" height="500">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading mb-2">Витрина продукта Зерно</h3>
-                        <p class="text-muted mb-4">Продуктовая витрина для локального бренда с акцентом на визуальной подаче.</p>
-                        <a href="project-zerno.html" class="inline-flex items-center text-accent-cyan hover:text-accent-coral transition-colors font-semibold">
-                            Смотреть кейс <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <!-- Кнопка "Смотреть все" -->
-            <div class="text-center fade-in">
-                <a href="portfolio.html" class="btn-primary inline-flex items-center bg-accent-cyan text-dark px-10 py-4 rounded-full font-semibold text-lg">
-                    <i class="fas fa-th-large mr-2"></i>Смотреть все работы
-                </a>
             </div>
         </div>
     </section>
@@ -353,49 +302,66 @@
     <!-- Секция "Услуги" -->
     <section id="services" class="py-20 px-6 bg-dark">
         <div class="container mx-auto max-w-5xl">
-            <h2 class="text-4xl md:text-5xl font-heading text-center mb-16 fade-in">
-                Мои <span class="text-accent-cyan">услуги</span>
+            <h2 class="text-4xl md:text-5xl font-heading text-left mb-4 fade-in">
+                Подберем формат,<br>который <span class="text-accent-cyan">решит вашу задачу</span>
             </h2>
+            <p class="text-left text-muted text-lg mb-16 max-w-3xl fade-in leading-relaxed">
+                Точная стоимость зависит от сложности и объема вашего проекта.<br>Финальная стоимость закрепляется в ТЗ и не изменяется.
+            </p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Услуга 1: Лендинг под ключ -->
-                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors">
+                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
                     <div class="flex justify-between items-start mb-4">
-                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M12.78 2.28C12.62 2.17 12.43 2.12 12.24 2.12C12.05 2.12 11.86 2.17 11.7 2.28L3.91 7.5C3.32 7.89 2.94 8.53 2.88 9.24C2.82 9.95 3.09 10.64 3.59 11.14L6.86 14.41C7.36 14.91 8.05 15.18 8.76 15.12C9.47 15.06 10.11 14.68 10.5 14.09L15.72 6.3C16.03 5.83 16.13 5.26 16 4.71C15.87 4.16 15.53 3.68 15.06 3.38L12.78 2.28Z"/>
-                        </svg>
-                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 5000₽</span>
+                        <i class="fas fa-laptop-code text-4xl text-accent-cyan"></i>
+                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 8000 ₽</span>
                     </div>
-                    <h3 class="text-2xl font-heading mb-3">Лендинг под ключ</h3>
-                    <p class="text-muted">Полный цикл: от структуры и дизайна до верстки и запуска</p>
+                    <h3 class="text-2xl font-heading mb-3 text-light" style="min-height: 64px;">Лендинг под ключ</h3>
+                    <p class="text-muted leading-relaxed flex-grow mb-6">Одностраничный сайт. Идеально для продажи конкретной услуги, товара или сбора заявок.</p>
+                    <button onclick="openModal('Лендинг под ключ')" class="btn-primary bg-accent-cyan text-dark px-6 py-3 rounded-full font-semibold text-center mt-auto inline-block w-full cursor-pointer">
+                        Заказать
+                    </button>
                 </div>
                 
                 <!-- Услуга 2: Многостраничный сайт -->
-                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors">
+                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
                     <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-layer-group text-5xl text-accent-cyan"></i>
-                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 9000₽</span>
+                        <i class="fas fa-layer-group text-4xl text-accent-cyan"></i>
+                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 13000 ₽</span>
                     </div>
-                    <h3 class="text-2xl font-heading mb-3">Многостраничный сайт</h3>
-                    <p class="text-muted">Несколько страниц с единым стилем, навигацией и адаптивом</p>
+                    <h3 class="text-2xl font-heading mb-3 text-light" style="min-height: 64px;">Многостраничный сайт</h3>
+                    <p class="text-muted leading-relaxed flex-grow mb-6">Подходит для компаний, которым нужно подробно рассказать о себе, услугах и команде.</p>
+                    <button onclick="openModal('Многостраничный сайт')" class="btn-primary bg-accent-cyan text-dark px-6 py-3 rounded-full font-semibold text-center mt-auto inline-block w-full cursor-pointer">
+                        Обсудить
+                    </button>
                 </div>
                 
                 <!-- Услуга 3: Консультация -->
-                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors">
+                <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
                     <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-comments text-5xl text-accent-cyan"></i>
+                        <i class="fas fa-comments text-4xl text-accent-cyan"></i>
                         <span class="price-tag text-2xl font-bold text-accent-cyan">Бесплатно</span>
                     </div>
-                    <h3 class="text-2xl font-heading mb-3">Консультация</h3>
-                    <p class="text-muted">Разбор вашего проекта, рекомендации по улучшению</p>
+                    <h3 class="text-2xl font-heading mb-3 text-light" style="min-height: 64px;">Консультация</h3>
+                    <p class="text-muted leading-relaxed flex-grow mb-6">Разбор вашего проекта, рекомендации по улучшению текущего сайта или выбору стратегии запуска.</p>
+                    <button onclick="openModal('Консультация')" class="btn-primary bg-accent-cyan text-dark px-6 py-3 rounded-full font-semibold text-center mt-auto inline-block w-full cursor-pointer">
+                        Записаться
+                    </button>
                 </div>
+            </div>
+            
+            <!-- Текстовая ссылка в конце секции -->
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="calculation.html" class="text-accent-cyan hover:text-accent-coral font-semibold text-lg transition-colors">
+                    → Пример расчёта работ ←
+                </a>
             </div>
         </div>
     </section>
-    
+             
     <!-- Секция "Контакты" -->
     <section id="contact" class="py-20 px-6 bg-dark">
-        <div class="container mx-auto max-w-2xl">
+        <div class="container mx-auto" style="max-width: 500px;">
             <h2 class="text-4xl md:text-5xl font-heading text-center mb-6 fade-in">
                 Свяжитесь <span class="text-accent-cyan">со мной</span>
             </h2>
@@ -423,51 +389,44 @@
                 </div>
                 
                 <!-- Форма -->
-                <form 
-                    x-show="!submitted"
-                    @submit.prevent="submitForm"
-                    class="space-y-4"
-                >
+                <form x-show="!submitted" @submit.prevent="submitForm" class="space-y-4">
                     <div>
-                        <input 
-                            type="text" 
-                            name="name" 
-                            placeholder="Ваше имя" 
-                            x-model="formData.name"
-                            required 
-                            class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"
-                        >
+                        <input type="text" name="name" placeholder="Ваше имя" x-model="formData.name" required class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors">
                     </div>
                     
                     <div>
-                        <input 
-                            type="text" 
-                            name="telegram" 
-                            placeholder="Ваш Telegram (@username)" 
-                            x-model="formData.telegram"
-                            pattern="@?[a-zA-Z0-9_]{5,32}" 
-                            title="Введите корректный username (5-32 символа, буквы, цифры, подчёркивание)"
-                            required 
-                            class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"
-                        >
+                        <input type="text" name="telegram" placeholder="Ваш Telegram (@username)" x-model="formData.telegram" pattern="@?[a-zA-Z0-9_]{5,32}" title="Введите корректный username (5-32 символа, буквы, цифры, подчёркивание)" required class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors">
                     </div>
                     
-                    <div>
-                        <textarea 
-                            name="message" 
-                            placeholder="Расскажите о вашем проекте" 
-                            x-model="formData.message"
-                            rows="5" 
-                            required 
-                            class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors"
-                        ></textarea>
+                    <!-- Переключатели услуг -->
+                    <div class="space-y-4">
+                        <p class="text-light font-semibold mb-2">Что вас интересует?</p>
+                        
+                        <label class="flex items-center py-3 px-4 border border-muted/20 rounded-lg cursor-pointer hover:border-accent-cyan transition-colors w-full">
+                            <input type="radio" name="service" value="Лендинг" x-model="formData.service" required class="w-4 h-4 text-accent-cyan bg-dark border-muted/20 focus:ring-accent-cyan focus:ring-2">
+                            <span class="text-light" style="margin-left: 20px;">Лендинг</span>
+                        </label>
+                        
+                        <label class="flex items-center py-3 px-4 border border-muted/20 rounded-lg cursor-pointer hover:border-accent-cyan transition-colors w-full">
+                            <input type="radio" name="service" value="Многостраничный сайт" x-model="formData.service" required class="w-4 h-4 text-accent-cyan bg-dark border-muted/20 focus:ring-accent-cyan focus:ring-2">
+                            <span class="text-light" style="margin-left: 20px;">Многостраничный сайт</span>
+                        </label>
+                        
+                        <label class="flex items-center py-3 px-4 border border-muted/20 rounded-lg cursor-pointer hover:border-accent-cyan transition-colors w-full">
+                            <input type="radio" name="service" value="Консультация" x-model="formData.service" required class="w-4 h-4 text-accent-cyan bg-dark border-muted/20 focus:ring-accent-cyan focus:ring-2">
+                            <span class="text-light" style="margin-left: 20px;">Консультация</span>
+                        </label>
                     </div>
+
+                    <!-- Чекбокс согласия в модальном окне -->
+                    <label class="flex items-start gap-3 cursor-pointer mt-4">
+                        <input type="checkbox" id="modalPrivacyCheck" required class="mt-1 w-4 h-4 text-accent-cyan bg-dark border-muted/20 rounded focus:ring-accent-cyan focus:ring-2" style="margin-left: 16px;">
+                        <span class="text-muted text-sm leading-tight" style="margin-left: 18px;">
+                            Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с <a href="privacy.html" class="text-accent-cyan hover:text-accent-coral transition-colors underline">Политикой конфиденциальности</a>.
+                        </span>
+                    </label>
                     
-                    <button 
-                        type="submit" 
-                        :disabled="loading"
-                        class="btn-primary w-full bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
+                    <button type="submit" :disabled="loading" class="btn-primary w-full bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed">
                         <template x-if="loading">
                             <span><i class="fas fa-spinner fa-spin mr-2"></i>Отправка...</span>
                         </template>
@@ -479,22 +438,108 @@
             </div>
         </div>
     </section>
+
+    <!-- Секция "Почему стоит работать со мной" -->
+    <section id="why-me" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-center mb-4 fade-in">
+                Почему стоит работать <span class="text-accent-cyan">со мной</span>
+            </h2>
+            <p class="text-center text-muted text-lg mb-16 max-w-3xl mx-auto fade-in">
+                Мой подход к разработке строится на ключевых принципах:<br>скорость, надежность и прозрачность.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Пункт 1: Поддержка проекта -->
+                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
+                    <i class="fas fa-life-ring text-4xl text-accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-heading mb-4 text-light">Поддержка проекта</h3>
+                    <p class="text-muted leading-relaxed flex-grow">
+                        После полной сдачи проекта я обеспечиваю техническую поддержку сайта в течение 2 недель: мелкие правки в коде, замена контента.
+                    </p>
+                </div>
+                
+                <!-- Пункт 2: Скорость разработки -->
+                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
+                    <i class="fas fa-rocket text-4xl text-accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-heading mb-4 text-light">Скорость разработки</h3>
+                    <p class="text-muted leading-relaxed flex-grow">
+                        Выполняю работу в сжатые сроки (от 7 до 14 дней) благодаря использованию современных инструментов и ИИ-ассистентов.
+                    </p>
+                </div>
+                
+                <!-- Пункт 3: Гарантия и прозрачность -->
+                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
+                    <i class="fas fa-shield-alt text-4xl text-accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-heading mb-4 text-light">Гарантия и прозрачность</h3>
+                    <p class="text-muted leading-relaxed flex-grow">
+                        Работаю по договору с четкими этапами. Безопасная оплата: 50% предоплата, 50% после полной сдачи проекта.
+                    </p>
+                </div>
+                
+                <!-- Пункт 4: Адаптивность и совместимость -->
+                <div class="p-8 bg-dark border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
+                    <i class="fas fa-mobile-alt text-4xl text-accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-heading mb-4 text-light">Адаптивность и совместимость</h3>
+                    <p class="text-muted leading-relaxed flex-grow">
+                        Сайт корректно отображается на всех смартфонах и стабильно работает во всех популярных браузерах.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Footer -->
     <footer class="py-8 px-6 border-t border-muted/20">
         <div class="container mx-auto text-center text-muted">
-            <p>&copy; 2026 Крис Мазур. Все права защищены.</p>
+            <p class="mb-2">&copy; 2026 Крис Мазур. Все права защищены.</p>
+            <p class="text-sm">
+                <a href="privacy.html" class="hover:text-accent-cyan transition-colors underline">Политика обработки персональных данных</a>
+            </p>
         </div>
     </footer>
     
+    <!-- Модальное окно для услуг (компактное) -->
+    <div id="serviceModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden">
+        <div onclick="closeModal()" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        <div class="relative bg-dark border border-muted/20 rounded-lg p-6 shadow-2xl" style="max-width: 400px; width: 100%; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-muted hover:text-light transition-colors" aria-label="Закрыть">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <h3 class="text-2xl font-heading mb-2 text-light">Оставить заявку</h3>
+            <p class="text-muted mb-6">Услуга: <span id="modalServiceName" class="text-accent-cyan font-semibold"></span></p>
+            <div id="modalSuccess" class="hidden p-4 bg-accent-cyan/10 border border-accent-cyan rounded-lg mb-4">
+                <p class="text-accent-cyan font-semibold text-sm">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    Спасибо! Заявка отправлена. Я свяжусь с вами в ближайшее время.
+                </p>
+            </div>
+            <div id="modalError" class="hidden p-4 bg-accent-coral/10 border border-accent-coral rounded-lg mb-4">
+                <p class="text-accent-coral font-semibold text-sm">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    Произошла ошибка. Пожалуйста, напишите мне напрямую в Telegram.
+                </p>
+            </div>
+            <form id="modalForm" class="space-y-4">
+                <input type="hidden" id="modalServiceInput" name="service">
+                <div>
+                    <input type="text" name="name" placeholder="Ваше имя" required class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors text-light">
+                </div>
+                <div>
+                    <input type="text" name="telegram" placeholder="Ваш Telegram (@username)" pattern="@?[a-zA-Z0-9_]{5,32}" required class="w-full px-4 py-3 bg-dark border border-muted/20 rounded-lg focus:border-accent-cyan focus:outline-none transition-colors text-light">
+                </div>
+                <button type="submit" id="modalSubmitBtn" class="btn-primary w-full bg-accent-cyan text-dark px-6 py-3 rounded-full font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span id="modalBtnText"><i class="fas fa-paper-plane mr-2"></i>Отправить заявку</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Скрипт для анимаций при скролле -->
     <script>
-        // Intersection Observer для плавного появления элементов
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -502,59 +547,37 @@
                 }
             });
         }, observerOptions);
-        
-        // Наблюдаем за всеми элементами с классом fade-in
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Инициализация Alpine.js для мобильного меню
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('mobileMenu', () => ({
-                mobileMenuOpen: false
-            }));
-        });
+        document.querySelectorAll('.fade-in').forEach(el => { observer.observe(el); });
     </script>
 
+    <!-- Объединенный скрипт для форм -->
     <script>
-        // Alpine.js компонент для формы обратной связи
+        // 1. Alpine.js для ОСНОВНОЙ формы контактов
         function contactForm() {
             return {
-                formData: {
-                    name: '',
-                    telegram: '',
-                    message: ''
-                },
+                formData: { name: '', telegram: '', service: '' },
                 loading: false,
                 submitted: false,
                 error: false,
-                
                 async submitForm() {
                     this.loading = true;
                     this.error = false;
-                    
                     try {
                         const formData = new FormData();
                         formData.append('name', this.formData.name);
                         formData.append('telegram', this.formData.telegram);
-                        formData.append('message', this.formData.message);
+                        formData.append('service', this.formData.service);
                         
                         const response = await fetch('https://formspree.io/f/mnjyjydj', {
                             method: 'POST',
                             body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
+                            headers: { 'Accept': 'application/json' }
                         });
                         
                         if (response.ok) {
-                            // Отправка цели в Яндекс.Метрику
-                            if (typeof ym !== 'undefined') {
-                                ym(110998875, 'reachGoal', 'form_submit_success');
-                            }
-                            
+                            if (typeof ym !== 'undefined') ym(110998875, 'reachGoal', 'form_submit_success');
                             this.submitted = true;
-                            this.formData = { name: '', telegram: '', message: '' };
+                            this.formData = { name: '', telegram: '', service: '' };
                         } else {
                             this.error = true;
                         }
@@ -567,7 +590,110 @@
                 }
             }
         }
+
+        // 2. Чистый JS для МОДАЛЬНОГО ОКНА услуг
+        const modal = document.getElementById('serviceModal');
+        const modalServiceName = document.getElementById('modalServiceName');
+        const modalServiceInput = document.getElementById('modalServiceInput');
+        const modalForm = document.getElementById('modalForm');
+        const modalSuccess = document.getElementById('modalSuccess');
+        const modalError = document.getElementById('modalError');
+        const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+        const modalBtnText = document.getElementById('modalBtnText');
+
+        function openModal(serviceName) {
+            modalServiceName.textContent = serviceName;
+            modalServiceInput.value = serviceName;
+            modal.classList.remove('hidden');
+            if (typeof ym !== 'undefined') {
+                const goalMap = { 'Лендинг под ключ': 'service_landing', 'Многостраничный сайт': 'service_multisite', 'Консультация': 'service_consult' };
+                if (goalMap[serviceName]) ym(110998875, 'reachGoal', goalMap[serviceName]);
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modalForm.reset();
+            modalSuccess.classList.add('hidden');
+            modalError.classList.add('hidden');
+            modalSubmitBtn.disabled = false;
+            modalBtnText.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Отправить заявку';
+        }
+
+        modalForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Проверяем чекбокс согласия
+            const privacyCheck = document.getElementById('modalPrivacyCheck');
+            if (!privacyCheck.checked) {
+                alert('Пожалуйста, подтвердите согласие на обработку персональных данных.');
+                return;
+            }
+            
+            modalSubmitBtn.disabled = true;
+            modalBtnText.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Отправка...';
+            modalError.classList.add('hidden');
+
+            const formData = new FormData(modalForm);
+            try {
+                const response = await fetch('https://formspree.io/f/mnjyjydj', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+                if (response.ok) {
+                    modalSuccess.classList.remove('hidden');
+                    modalForm.reset();
+                    setTimeout(closeModal, 3000);
+                } else {
+                    modalError.classList.remove('hidden');
+                    modalSubmitBtn.disabled = false;
+                    modalBtnText.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Отправить заявку';
+                }
+            } catch (err) {
+                modalError.classList.remove('hidden');
+                modalSubmitBtn.disabled = false;
+                modalBtnText.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Отправить заявку';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
     </script>
-    
+
+    <!-- Cookie-баннер -->
+    <div id="cookieBanner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9998; background: rgba(15, 23, 42, 0.98); border-top: 1px solid rgba(148, 163, 184, 0.2); padding: 20px;">
+        <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-muted text-sm leading-relaxed">
+                Мы используем файлы cookie и сервис Яндекс.Метрика для анализа посещаемости сайта. 
+                Продолжая использовать сайт, вы соглашаетесь с нашей 
+                <a href="privacy.html" class="text-accent-cyan hover:text-accent-coral underline">Политикой конфиденциальности</a>.
+            </p>
+            <button id="cookieAccept" class="bg-accent-cyan text-dark px-6 py-2 rounded-full font-semibold text-sm whitespace-nowrap hover:opacity-90 transition-opacity">
+                Принять
+            </button>
+        </div>
+    </div>
+
+    <script>
+    // Cookie-баннер
+    (function() {
+        const banner = document.getElementById('cookieBanner');
+        const acceptBtn = document.getElementById('cookieAccept');
+        
+        // Проверяем, было ли уже дано согласие
+        if (!localStorage.getItem('cookieConsent')) {
+            banner.style.display = 'block';
+        }
+        
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'true');
+            banner.style.display = 'none';
+            
+            // Если Яндекс.Метрика уже загружена — отправляем цель
+            if (typeof ym !== 'undefined') {
+                ym(110998875, 'reachGoal', 'cookie_consent');
+            }
+        });
+    })();
+    </script>
+
 </body>
 </html>

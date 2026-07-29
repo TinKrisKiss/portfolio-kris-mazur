@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика обработки персональных данных | Веб-разработчик</title>
+    <meta name="description" content="Политика обработки персональных данных сайта веб-разработчика. Порядок сбора, хранения и защиты персональной информации.">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="dist/style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="dist/style.css"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-dark text-light font-sans antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-muted/20">
+        <nav class="px-6 py-4" x-data="{ mobileMenuOpen: false }">
+            <div class="hidden md:flex items-center justify-between w-full max-w-7xl mx-auto">
+                <a href="index.html" class="flex items-center flex-shrink-0" style="margin-left: 200px;">
+                    <img src="images/logo.webp" alt="Логотип" class="h-10 md:h-12 w-auto object-contain transition-opacity hover:opacity-80" width="500" height="500">
+                </a>
+                <div style="position: absolute; left: calc(50% - 50px); transform: translateX(0); display: flex; align-items: center; gap: 63px;">
+                    <a href="portfolio.html" class="text-light hover:text-accent-cyan transition-colors">Работы</a>
+                    <a href="index.html#services" class="text-light hover:text-accent-cyan transition-colors">Услуги</a>
+                    <a href="index.html#contact" class="text-light hover:text-accent-cyan transition-colors">Контакты</a>
+                </div>
+                <a href="https://t.me/mazurtin" target="_blank" style="margin-right: 200px;" class="btn-primary bg-accent-cyan text-dark px-6 py-2 rounded-full font-semibold flex items-center gap-2 flex-shrink-0">
+                    <i class="fab fa-telegram"></i>Telegram
+                </a>
+            </div>
+            <div class="md:hidden flex items-center justify-between max-w-7xl mx-auto">
+                <a href="index.html" class="flex items-center">
+                    <img src="images/logo.webp" alt="Логотип" class="h-10 w-auto object-contain transition-opacity hover:opacity-80" width="500" height="500">
+                </a>
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-light focus:outline-none" aria-label="Открыть меню">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div x-show="mobileMenuOpen" x-transition class="md:hidden mt-4 pb-4 border-t border-muted/20 pt-4 max-w-7xl mx-auto" @click.away="mobileMenuOpen = false">
+                <a href="portfolio.html" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Работы</a>
+                <a href="index.html#services" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Услуги</a>
+                <a href="index.html#contact" @click="mobileMenuOpen = false" class="block py-3 text-light hover:text-accent-cyan transition-colors border-b border-muted/10">Контакты</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="pb-20 px-6" style="padding-top: 200px;">
+        <div class="container mx-auto max-w-4xl">
+            
+            <!-- Заголовок -->
+            <h1 class="text-4xl md:text-5xl font-heading mb-4 fade-in">
+                Политика <span class="text-accent-cyan">обработки персональных данных</span>
+            </h1>
+            <p class="text-muted text-lg mb-12 fade-in">
+                Последнее обновление: 29 июля 2026 г.
+            </p>
+
+            <!-- Навигация по разделам -->
+            <nav class="mb-12 p-6 bg-dark border border-muted/20 rounded-lg fade-in">
+                <h2 class="text-xl font-heading mb-4 text-light">Содержание</h2>
+                <ol class="space-y-2 text-muted">
+                    <li><a href="#section1" class="hover:text-accent-cyan transition-colors">1. Общие положения</a></li>
+                    <li><a href="#section2" class="hover:text-accent-cyan transition-colors">2. Оператор персональных данных</a></li>
+                    <li><a href="#section3" class="hover:text-accent-cyan transition-colors">3. Какие данные мы собираем</a></li>
+                    <li><a href="#section4" class="hover:text-accent-cyan transition-colors">4. Цели обработки данных</a></li>
+                    <li><a href="#section5" class="hover:text-accent-cyan transition-colors">5. Правовые основания</a></li>
+                    <li><a href="#section6" class="hover:text-accent-cyan transition-colors">6. Способы обработки данных</a></li>
+                    <li><a href="#section7" class="hover:text-accent-cyan transition-colors">7. Передача данных третьим лицам</a></li>
+                    <li><a href="#section8" class="hover:text-accent-cyan transition-colors">8. Срок хранения данных</a></li>
+                    <li><a href="#section9" class="hover:text-accent-cyan transition-colors">9. Меры защиты данных</a></li>
+                    <li><a href="#section10" class="hover:text-accent-cyan transition-colors">10. Ваши права</a></li>
+                    <li><a href="#section11" class="hover:text-accent-cyan transition-colors">11. Файлы cookie и Яндекс.Метрика</a></li>
+                    <li><a href="#section12" class="hover:text-accent-cyan transition-colors">12. Порядок отзыва согласия</a></li>
+                    <li><a href="#section13" class="hover:text-accent-cyan transition-colors">13. Изменения в политике</a></li>
+                    <li><a href="#section14" class="hover:text-accent-cyan transition-colors">14. Контактная информация</a></li>
+                </ol>
+            </nav>
+
+            <!-- Разделы -->
+            <div class="space-y-12 text-muted leading-relaxed">
+
+                <section id="section1" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">1. Общие положения</h2>
+                    <p>Настоящая Политика обработки персональных данных (далее — Политика) разработана в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности.</p>
+                    <p class="mt-4">Используя сайт и оставляя заявки через формы обратной связи, вы подтверждаете свое согласие с условиями настоящей Политики. Если вы не согласны с условиями, пожалуйста, не используйте сайт.</p>
+                </section>
+
+                <section id="section2" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">2. Оператор персональных данных</h2>
+                    <p>Оператором персональных данных является:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li><strong class="text-light">ФИО:</strong> Мазур Кристина Андреевна</li>
+                        <li><strong class="text-light">Статус:</strong> Самозанятый</li>
+                        <li><strong class="text-light">Регион деятельности:</strong> Россия, Свердловская область, г. Екатеринбург</li>
+                        <li><strong class="text-light">Email:</strong> z-qksi@yandex.ru</li>
+                        <li><strong class="text-light">Telegram:</strong> @mazurtin</li>
+                    </ul>
+                </section>
+
+                <section id="section3" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">3. Какие данные мы собираем</h2>
+                    <p>В процессе использования сайта мы собираем следующие категории данных:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li><strong class="text-light">Данные, предоставляемые пользователем:</strong> имя и никнейм в Telegram, которые вы добровольно указываете в формах обратной связи.</li>
+                        <li><strong class="text-light">Технические данные:</strong> IP-адрес, тип браузера, операционная система, разрешение экрана, язык браузера.</li>
+                        <li><strong class="text-light">Данные о поведении:</strong> информация о посещенных страницах, времени на сайте, источниках перехода (собирается через Яндекс.Метрику).</li>
+                        <li><strong class="text-light">Файлы cookie:</strong> небольшие текстовые файлы, сохраняемые в вашем браузере.</li>
+                    </ul>
+                </section>
+
+                <section id="section4" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">4. Цели обработки данных</h2>
+                    <p>Персональные данные обрабатываются в следующих целях:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li>Обработка заявок, оставленных через формы на сайте, и связь с пользователем для обсуждения деталей проекта.</li>
+                        <li>Предоставление запрашиваемых услуг по разработке сайтов.</li>
+                        <li>Анализ посещаемости и улучшение работы сайта (через Яндекс.Метрику).</li>
+                        <li>Выполнение требований законодательства Российской Федерации.</li>
+                    </ul>
+                </section>
+
+                <section id="section5" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">5. Правовые основания обработки</h2>
+                    <p>Правовым основанием обработки персональных данных является:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li>Согласие субъекта персональных данных, получаемое при установке отметки в чекбоксе «Согласие на обработку персональных данных» в форме обратной связи.</li>
+                        <li>Необходимость исполнения договора (в случае заключения договора на оказание услуг).</li>
+                        <li>Требования законодательства Российской Федерации.</li>
+                    </ul>
+                </section>
+
+                <section id="section6" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">6. Способы обработки данных</h2>
+                    <p>Обработка персональных данных осуществляется следующими способами:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li>Сбор, запись, систематизация, накопление данных с использованием баз данных на территории Российской Федерации.</li>
+                        <li>Хранение данных в защищённых информационных системах.</li>
+                        <li>Использование данных для связи с пользователем через Telegram или электронную почту.</li>
+                        <li>Передача обезличенных данных в сервисы аналитики (Яндекс.Метрика).</li>
+                        <li>Уничтожение данных по истечении срока хранения или по запросу пользователя.</li>
+                    </ul>
+                </section>
+
+                <section id="section7" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">7. Передача данных третьим лицам</h2>
+                    <p>Мы не передаем ваши персональные данные третьим лицам, за исключением следующих случаев:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li>Передача сервису Formspree для технической отправки форм (данные передаются в зашифрованном виде).</li>
+                        <li>Передача сервису Яндекс.Метрика в обезличенном виде для аналитики.</li>
+                        <li>По требованию уполномоченных государственных органов в порядке, установленном законодательством РФ.</li>
+                    </ul>
+                </section>
+
+                <section id="section8" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">8. Срок хранения данных</h2>
+                    <p>Персональные данные хранятся в течение срока, необходимого для достижения целей обработки, но не более 3 (трех) лет с момента последнего взаимодействия с пользователем, если иное не предусмотрено законодательством РФ.</p>
+                    <p class="mt-4">После истечения срока хранения данные подлежат уничтожению или обезличиванию.</p>
+                </section>
+
+                <section id="section9" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">9. Меры защиты данных</h2>
+                    <p>Для защиты персональных данных применяются следующие меры:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li>Использование защищённых каналов связи (HTTPS) для передачи данных.</li>
+                        <li>Хранение данных в информационных системах, защищённых от несанкционированного доступа.</li>
+                        <li>Ограничение доступа к персональным данным только уполномоченным лицам.</li>
+                        <li>Регулярное резервное копирование данных.</li>
+                        <li>Обучение сотрудников (если есть) правилам работы с персональными данными.</li>
+                    </ul>
+                </section>
+
+                <section id="section10" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">10. Ваши права</h2>
+                    <p>В соответствии с ФЗ-152 вы имеете право:</p>
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li>Получать информацию об обработке своих персональных данных.</li>
+                        <li>Требовать уточнения, блокирования или уничтожения данных, если они неполные, устаревшие или неточные.</li>
+                        <li>Отозвать согласие на обработку персональных данных.</li>
+                        <li>Обжаловать действия оператора в уполномоченный орган по защите прав субъектов персональных данных (Роскомнадзор).</li>
+                    </ul>
+                    <p class="mt-4">Для реализации своих прав напишите мне в Telegram: <a href="https://t.me/mazurtin" target="_blank" class="text-accent-cyan hover:text-accent-coral transition-colors underline">@mazurtin</a>.</p>
+                </section>
+
+                <section id="section11" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">11. Файлы cookie и Яндекс.Метрика</h2>
+                    <p>Сайт использует файлы cookie и сервис Яндекс.Метрика для сбора обезличенных данных о посещаемости (тип браузера, операционная система, время посещения, источники перехода).</p>
+                    <p class="mt-4">Эти данные не позволяют идентифицировать конкретного пользователя и используются исключительно для улучшения работы сайта.</p>
+                    <p class="mt-4">Вы можете отключить сохранение cookie в настройках вашего браузера, однако это может повлиять на корректность работы некоторых функций сайта.</p>
+                    <p class="mt-4">Нажимая кнопку "Принять" в баннере cookie, вы даёте явное согласие на использование файлов cookie и передачу обезличенных данных в Яндекс.Метрику.</p>
+                </section>
+
+                <section id="section12" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">12. Порядок отзыва согласия</h2>
+                    <p>Вы можете отозвать согласие на обработку персональных данных в любой момент, направив письменное уведомление оператору.</p>
+                    <p class="mt-4">Для отзыва согласия напишите мне в Telegram: <a href="https://t.me/mazurtin" target="_blank" class="text-accent-cyan hover:text-accent-coral transition-colors underline">@mazurtin</a> с указанием «Отзыв согласия на обработку персональных данных».</p>
+                    <p class="mt-4">После получения уведомления обработка персональных данных будет прекращена в течение 30 дней, данные будут уничтожены, если иное не предусмотрено законодательством РФ.</p>
+                </section>
+
+                <section id="section13" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">13. Изменения в политике</h2>
+                    <p>Администрация сайта оставляет за собой право вносить изменения в настоящую Политику. Новая редакция вступает в силу с момента её размещения на сайте, если иное не предусмотрено новой редакцией.</p>
+                    <p class="mt-4">Актуальная версия Политики всегда доступна по адресу: <a href="privacy.html" class="text-accent-cyan hover:text-accent-coral transition-colors underline">privacy.html</a>.</p>
+                </section>
+
+                <section id="section14" class="fade-in">
+                    <h2 class="text-2xl md:text-3xl font-heading mb-4 text-light">14. Контактная информация</h2>
+                    <p>По всем вопросам, связанным с обработкой персональных данных, вы можете связаться со мной:</p>
+                    <ul class="list-none mt-4 space-y-2">
+                        <li><strong class="text-light">Telegram:</strong> <a href="https://t.me/mazurtin" target="_blank" class="text-accent-cyan hover:text-accent-coral transition-colors underline">@mazurtin</a></li>
+                        <li><strong class="text-light">Сайт:</strong> <a href="index.html" class="text-accent-cyan hover:text-accent-coral transition-colors underline">Главная страница</a></li>
+                    </ul>
+                </section>
+
+            </div>
+
+            <!-- Кнопка назад -->
+            <div class="fade-in" style="margin-top: 30px; text-align: center;">
+                <a href="index.html#contact" class="inline-flex items-center text-accent-cyan hover:text-accent-coral font-semibold transition-colors" style="font-size: 16px; gap: 8px;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    <span style="white-space: nowrap;">Вернуться к форме связи</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-muted/20">
+        <div class="container mx-auto text-center text-muted">
+            <p class="mb-2">&copy; 2026 Крис Мазур. Все права защищены.</p>
+            <p class="text-sm">
+                <a href="privacy.html" class="hover:text-accent-cyan transition-colors underline">Политика обработки персональных данных</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Скрипт для анимаций -->
+    <script>
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => { observer.observe(el); });
+    </script>
+
+</body>
+</html>
