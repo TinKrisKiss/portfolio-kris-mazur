@@ -7,9 +7,7 @@
     <meta name="yandex-verification" content="3c88c1372d2e59b1" />
 
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="preload" as="image" href="images/hero-mobile.webp" media="(max-width: 767px)">
-    <link rel="preload" as="image" href="images/hero-desktop.webp" media="(min-width: 768px)">
-    
+        
     <title>Веб-разработчик | Создание лендингов под ключ</title>
     <meta name="description" content="Разработка быстрых и адаптивных лендингов под ключ на HTML, Tailwind CSS и Alpine.js. Чистый код, высокая скорость загрузки (90+ PageSpeed) и фокус на конверсию вашего бизнеса.">
     <meta name="keywords" content="веб-разработчик, создание лендингов, верстка сайтов, HTML Tailwind, заказать сайт, портфолио разработчика">
@@ -256,7 +254,7 @@
             
                 <div style="position: absolute; left: 72%; transform: translateX(-50%); display: flex; gap: 63px;">
                     <a href="portfolio.html" class="text-white hover:text-cyan-400 transition-colors">Работы</a>
-                    <a href="#services" class="text-white hover:text-cyan-400 transition-colors">Услуги</a>
+                    <a href="#special-offer" class="text-white hover:text-cyan-400 transition-colors">Скидки</a>
                     <a href="#contact" class="text-white hover:text-cyan-400 transition-colors">Контакты</a>
                 </div>
                 
@@ -298,7 +296,8 @@
                 style="border-top: 1px solid rgba(255,255,255,0.05);"
                 @click.away="mobileMenuOpen = false">
                 <a href="portfolio.html" @click="mobileMenuOpen = false" class="block py-3 text-white hover:text-cyan-400 border-b border-white/5">Работы</a>
-                <a href="#services" @click="mobileMenuOpen = false" class="block py-3 text-white hover:text-cyan-400 border-b border-white/5">Услуги</a>
+                
+                <a href="#special-offer" @click="mobileMenuOpen = false" class="block py-3 text-white hover:text-cyan-400 border-b border-white/5">Скидки</a>
                 <a href="#contact" @click="mobileMenuOpen = false" class="block py-3 text-white hover:text-cyan-400 border-b border-white/5">Контакты</a>
                 <a href="https://t.me/mazurtin" target="_blank" class="block mt-4 text-center bg-cyan-400 text-slate-900 px-6 py-3 rounded-full font-semibold mx-4">
                     <i class="fab fa-telegram mr-2"></i>Написать в Telegram
@@ -332,13 +331,16 @@
 
                     <h1 class="text-3xl md:text-5xl lg:text-6xl font-heading mb-6 text-light" style="max-width: 620px; line-height: 1.15;">
                         Упакую ваш бизнес<br>
-                        в продающий <span class="text-accent-cyan">лендинг</span><br>
-                        или <span class="text-accent-cyan">сайт</span>
+                        в <span class="text-accent-cyan">лендинг</span> или <span class="text-accent-cyan">сайт</span>
                     </h1>
                     
                     <p class="text-lg md:text-xl text-muted leading-relaxed" style="max-width: 620px;">
                         Разработаю структуру и дизайн,<br class="mobile-br">
-                        сверстаю сайт и запущу его онлайн.
+                        сверстаю сайт и запущу его онлайн
+                    </p>
+                    <p class="text-lg md:text-xl leading-relaxed mt-4" style="max-width: 620px;">
+                        <a href="#special-offer" class="text-accent-cyan hover:underline transition-colors">Скидка 50%</a>
+                        <span class="text-muted"> для первых 3 проектов</span>
                     </p>
                 </div>
                 
@@ -443,7 +445,7 @@
                 <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
                     <div class="flex justify-between items-start mb-4">
                         <i class="fas fa-laptop-code text-4xl text-accent-cyan"></i>
-                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 8000 ₽</span>
+                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 18 000 ₽</span>
                     </div>
                     <h3 class="text-2xl font-heading mb-2 text-light" style="min-height: 64px;">Лендинг под ключ</h3>
                     <p class="text-muted leading-relaxed flex-grow mb-6">Одностраничный сайт. Идеально для продажи конкретной услуги, товара или сбора заявок.</p>
@@ -455,7 +457,7 @@
                 <div class="p-8 border border-muted/20 rounded-lg fade-in hover:border-accent-cyan transition-colors flex flex-col h-full">
                     <div class="flex justify-between items-start mb-4">
                         <i class="fas fa-layer-group text-4xl text-accent-cyan"></i>
-                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 13000 ₽</span>
+                        <span class="price-tag text-2xl font-bold text-accent-cyan">от 25 000 ₽</span>
                     </div>
                     <h3 class="text-2xl font-heading mb-2 text-light" style="min-height: 64px;">Многостраничный сайт</h3>
                     <p class="text-muted leading-relaxed flex-grow mb-6">Подходит для компаний, которым нужно подробно рассказать о себе, услугах и команде.</p>
@@ -487,14 +489,125 @@
             </div>
         </div>
     </section>
-             
+
+    <!-- Акция -->
+    <section id="special-offer" class="relative py-20 px-6" style="background: #1e1e1e; position: relative; overflow: hidden;">
+        <!-- Верхняя голубая полоска -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #00f0ff, transparent);"></div>
+        
+        <!-- Диагональный градиентный фон -->
+        <div style="position: absolute; inset: 0; background: 
+            linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, transparent 30%),
+            linear-gradient(315deg, rgba(0, 240, 255, 0.15) 0%, transparent 30%);
+            pointer-events: none; z-index: 0;"></div>
+        
+        <!-- Контент секции -->
+        <div class="container mx-auto max-w-5xl relative z-10">
+            <!-- Заголовок -->
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading text-center mb-6 fade-in">
+                Специальные условия для <span class="text-accent-cyan">первых клиентов</span>
+            </h2>
+            
+            <p class="text-center text-muted text-lg mb-12 max-w-3xl mx-auto fade-in leading-relaxed">
+                Сейчас я активно формирую портфолио коммерческих проектов и готова предложить особые условия для первых трех клиентов.
+            </p>
+            
+            <!-- Стоимость по акции -->
+            <div class="mb-12 fade-in">
+                <h3 class="text-xl md:text-2xl font-heading mb-6 text-light text-center">
+                    Стоимость по акции
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                    <!-- Лендинг -->
+                    <div class="p-6 bg-dark border border-accent-cyan/30 rounded-lg text-center hover:border-accent-cyan transition-colors">
+                        <h4 class="text-lg font-heading text-light mb-3">Лендинг под ключ</h4>
+                        <p class="text-sm text-muted mb-4">(до 8 блоков)</p>
+                        <div class="flex items-center justify-center gap-3 mb-2">
+                            <span class="text-2xl md:text-3xl font-bold text-accent-cyan">9 000 ₽</span>
+                        </div>
+                        <div class="text-lg text-accent-coral" style="text-decoration: line-through;">18 000 ₽</div>
+                    </div>
+                    
+                    <!-- Многостраничный сайт -->
+                    <div class="p-6 bg-dark border border-accent-cyan/30 rounded-lg text-center hover:border-accent-cyan transition-colors">
+                        <h4 class="text-lg font-heading text-light mb-3">Многостраничный сайт</h4>
+                        <p class="text-sm text-muted mb-4">(до 4 страниц)</p>
+                        <div class="flex items-center justify-center gap-3 mb-2">
+                            <span class="text-2xl md:text-3xl font-bold text-accent-cyan">12 500 ₽</span>
+                        </div>
+                        <div class="text-lg text-accent-coral" style="text-decoration: line-through;">25 000 ₽</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ИЗМЕНЕНО: Пункты по центру экрана, выровнены по левому краю относительно друг друга -->
+            <div class="mb-12 fade-in">
+                <h3 class="text-xl md:text-2xl font-heading mb-6 text-light text-center">
+                    Условия
+                </h3>
+                <div class="mx-auto text-left space-y-4" style="max-width: 480px;">
+                    <div class="flex items-center gap-4">
+                        <svg width="30" height="30" class="text-accent-cyan flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        <span class="text-muted leading-relaxed">
+                            Оплата 50% предоплата, 50% после сдачи проекта
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <svg width="30" height="30" class="text-accent-cyan flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-muted leading-relaxed">
+                            Сроки: 7-14 дней в зависимости от сложности
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <svg width="30" height="30" class="text-accent-cyan flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                        <span class="text-muted leading-relaxed">
+                            До 2 раундов правок на каждом этапе
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <svg width="30" height="30" class="text-accent-cyan flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <span class="text-muted leading-relaxed">
+                            2 недели технической поддержки после сдачи проекта
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ИЗМЕНЕНО: Padding задан через inline-стиль -->
+            <div class="text-center mb-8 fade-in">
+                <div style="width: 180px; margin: 0 auto; padding: 16px 20px;" class="bg-dark border-2 border-accent-coral rounded-lg text-center">
+                    <p class="text-sm font-heading text-light mb-1">Осталось мест</p>
+                    <p class="text-xl md:text-2xl font-bold text-accent-coral">3 из 3</p>
+                </div>
+            </div>
+                        
+            <!-- ИЗМЕНЕНО: Добавлен отступ сверху, чтобы кнопка не перекрывала текст -->
+            <div class="text-center fade-in" style="margin-top: 60px;">
+                <a href="#contact" class="btn-primary inline-block bg-accent-cyan text-dark px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-accent-cyan/30 transition-all">
+                    Успеть первым
+                </a>
+            </div>
+        </div>
+        
+        <!-- Нижняя голубая полоска -->
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #00f0ff, transparent);"></div>
+    </section>
+
     <section id="contact" class="py-20 px-6" style="background: #2c2c2c;">
         <div class="container mx-auto" style="max-width: 500px;">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading text-center mb-6 fade-in">
                 Готовы <span class="text-accent-cyan">начать проект?</span>
             </h2>
             <p class="text-center text-muted text-lg mb-12 fade-in">
-                Отправьте заявку, и я свяжусь с вами<br>в ближайшее время для обсуждения деталей
+                Отправьте заявку, и я свяжусь с вами в ближайшее время для обсуждения деталей
             
             <div class="fade-in" x-data="contactForm()">
                 <div x-show="submitted" x-transition class="p-6 bg-accent-cyan/10 border border-accent-cyan rounded-lg mb-4">
