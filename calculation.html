@@ -72,30 +72,40 @@
             box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3);
         }
 
+        /* ИЗМЕНЕНО: Миниатюры — мобильные 2x2, десктоп 4 в ряд, без обрезки скруглений */
         .thumbnails-row {
-            display: flex;
-            gap: 4px;
-            height: 120px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
             width: 100%;
         }
 
         .thumbnails-row .gallery-item {
-            flex: 1;
             min-width: 0;
-            height: 100%;
+            width: 100%;
+            aspect-ratio: 1 / 1;
             background: transparent;
             overflow: hidden;
             cursor: pointer;
             position: relative;
+            border-radius: 8px;
         }
 
         .thumbnails-row .gallery-item img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: contain;
+            border-radius: 8px;
         }
 
-        /* ИЗМЕНЕНО: Убран разделитель, две колонки */
+        /* Десктоп: 4 миниатюры в одну линию */
+        @media (min-width: 768px) {
+            .thumbnails-row {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
         .works-list {
             margin-left: 0;
         }
@@ -364,7 +374,6 @@
                             </div>
                         </div>
                         
-                        <p class="text-muted/60 text-xs italic mt-4">* Цена актуальна на Июль 2026</p>
                     </div>
                 </div>
 
@@ -446,7 +455,6 @@
                             </div>
                         </div>
                         
-                        <p class="text-muted/60 text-xs italic mt-4">* Цена актуальна на Июль 2026</p>
                     </div>
                 </div>
 
@@ -528,7 +536,6 @@
                             </div>
                         </div>
                         
-                        <p class="text-muted/60 text-xs italic mt-4">* Цена актуальна на Июль 2026</p>
                     </div>
                 </div>
 
@@ -614,7 +621,6 @@
                             </div>
                         </div>
                         
-                        <p class="text-muted/60 text-xs italic mt-4">* Цена актуальна на Июль 2026</p>
                     </div>
                 </div>
             </div>
